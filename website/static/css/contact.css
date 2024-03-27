@@ -1,0 +1,110 @@
+.contact-form {
+  padding: 3rem;
+}
+
+.company-address,
+.form {
+  height: auto;
+}
+
+.contact-form-wrapper .company-address {
+  float: left;
+  width: 49%;
+  height: 65rem;
+}
+
+.contact-form-wrapper .form {
+  float: right;
+  width: 49%;
+}
+
+.contact-form-wrapper::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.company-image img {
+  object-fit: cover;
+  overflow: hidden;
+  width: 100%;
+  height: 32rem;
+  border-radius: 20px;
+}
+
+
+.address-group {
+  margin-bottom: 3rem;
+}
+
+.company-address,
+.form {
+  padding: 2rem;
+  border-radius: 20px;
+  background-color: #f4f4f4;
+}
+
+.company-address .address-group i {
+  display: inline-block;
+}
+
+.company-address .address-group h3 {
+  display: inline-block;
+  text-transform: uppercase;
+  margin-left: 1rem;
+  font-weight: 500;
+}
+
+.form h1::after {
+  content: "";
+  display: block;
+  width: 98%;
+  border: 0.3rem solid #e63946;
+}
+
+.form label {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #555555;
+  margin-bottom: 0.3em;
+}
+
+.form label::after {
+  content: "*";
+  color: #e63946;
+}
+
+.form input,
+.form textarea {
+  width: 100%;
+  color: #333333;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  border-width: 1px;
+  font-size: 1.4rem;
+  letter-spacing: 0.1rem;
+  line-height: 1.9rem;
+}
+
+.form textarea {
+  resize: none;
+  font-family: inherit;
+}
+
+.form-group {
+  margin: 1em 0;
+}
+
+.form-btn {
+  display: block;
+  margin: 2rem auto;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.form-group p {
+  position: absolute;
+  top: 90%;
+  left: 5%;
+}

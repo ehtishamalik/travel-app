@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="icon" type="image/png" href="{{url_for('static', filename='images/favicon.png')}}" />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/index.css')}}"
+    />
+    <script
+      type="module"
+      src="{{url_for('static', filename='js/app.js')}}"
+    ></script>
+    <title>Adventures Awaits</title>
+  </head>
+
+  <body>
+    <header class="header">
+      <nav class="navbar">
+        <div class="container">
+          <a class="logo logo-transition text-white text-uppercase" href="/"
+            >MT</a
+          >
+          <ul class="nav-items">
+            <li class="nav-item">
+              <a class="a-link text-white" href="/">HOME</a>
+            </li>
+            <li class="nav-item">
+              <a class="a-link text-white" href="/about">ABOUT</a>
+            </li>
+            <li class="nav-item">
+              <a class="a-link text-white" href="/contact">CONTACT</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="header-content">
+        <h1 class="text-uppercase text-bolder text-white">
+          Journey Beyond Borders
+        </h1>
+        <h3 class="text-uppercase text-white">
+          Unforgettable Travel Experiences
+        </h3>
+        <a class="button btn-primary" href="#explore-places">Explore Places</a>
+      </div>
+      <div class="add-btn">
+        <a href="/upload">+</a>
+      </div>
+    </header>
+    <div class="scroll-me">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+        <path
+          d="m12 17.586-7.293-7.293-1.414 1.414L12 20.414l8.707-8.707-1.414-1.414L12 17.586z"
+          fill="#555555"
+        />
+        <path
+          d="m20.707 5.707-1.414-1.414L12 11.586 4.707 4.293 3.293 5.707 12 14.414l8.707-8.707z"
+          fill="#555555"
+        />
+      </svg>
+    </div>
+
+    <section class="showcase" id="explore-places">
+      <div class="container">
+        {% for destination in destinations %}
+        {% set row_class = 'row1' if destination[0] % 2 == 1 else 'row2' %}
+        <div class="row {{ row_class }}">
+          <div class="img-box">
+            <img
+              src="{{url_for('static', filename='images/' + destination[3]) }}"
+              alt="Naran"
+            />
+          </div>
+          <div class="text-box">
+            <div class="text-box__inner">
+              <h2 class="heading-box text-black">{{ destination[1] }}</h2>
+              <p class="text-gray">{{ destination[2] }}</p>
+            </div>
+            <div class="button-box">
+              <a class="button btn-primary btn-secondary" href="/contact">book</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="container feature-boxes">
+        <div class="box box-odd">
+          <i class="fas fa-route fa-2x text-red"></i>
+          <h2>Adventurous</h2>
+          <p class="text-normal">
+            Embark on thrilling journeys to breathtaking destinations, where
+            daring adventures beckon at every turn.
+          </p>
+        </div>
+        <div class="box box-even">
+          <i class="fas fa-strikethrough fa-2x"></i>
+          <h2>Affordable</h2>
+          <p class="text-normal">
+            Satisfy your wanderlust without breaking the bank, with
+            budget-friendly travel options and unbeatable deals.
+          </p>
+        </div>
+        <div class="box box-odd">
+          <i class="fas fa-user-check fa-2x text-red"></i>
+          <h2>Experience</h2>
+          <p class="text-normal">
+            Create cherished memories amidst awe-inspiring landscapes, cultural
+            wonders, and unforgettable experiences.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="social-media-links">
+        <i class="fab fa-facebook fa-4x"></i>
+        <i class="fab fa-instagram fa-4x"></i>
+        <i class="fab fa-twitter fa-4x"></i>
+      </div>
+      <p>Malik Travels &copy; 2023, All Right Reserved</p>
+    </footer>
+  </body>
+</html>
