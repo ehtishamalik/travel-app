@@ -6,7 +6,7 @@
 
 .header {
     height: 95vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url("../images/header-image.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url("../images/header-image.jpeg");
     background-size: cover;
     background-position: top;
     background-repeat: no-repeat;

@@ -36,7 +36,7 @@ def destination():
     name = request.form.get("desname")
     description = request.form.get("description")
     unique_key = generate_unique_key()
-    unique_key = f"{unique_key}.jpg"
+    unique_key = f"{unique_key}.jpeg"
     try:
         save_compressed_image(path.join(IMAGES_FOLDER, unique_key), image)
         database.add_destination(name, description, unique_key)
