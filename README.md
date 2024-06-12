@@ -6,7 +6,7 @@ The Travel App is a web application that allows users to explore various travel 
 ## Technologies Used
 The Travel App is built using the following technologies:
 
-- Front-end: HTML, CSS, JS
+- Front-end: HTML, CSS, JS, Jinja template
 - Back-end: Python Flask
 - Database: SQLite Database
 
