@@ -58,7 +58,7 @@ class Destination(Base):
         return f"<<{self.uid}, {self.name}, {self.description}, {self.image}>>"
 
 
-engine = create_engine("sqlite:///database/database.db", echo=True)
+engine = create_engine("sqlite:///database/database.db", echo=False)
 Base.metadata.create_all(bind=engine)
 
 Session = sessionmaker(bind=engine)
