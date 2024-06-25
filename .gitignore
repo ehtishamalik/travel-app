@@ -1,3 +1,13 @@
 .venv
 .vscode
 website/__pycache__
+
+# Ignore database
+database/database.db
+
+# Ignore images in static folder
+website/static/images/*
+
+# Except the .gitkeep file
+!database/.gitkeep
+!website/static/images/.gitkeep

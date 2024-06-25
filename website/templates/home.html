@@ -10,15 +10,11 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="icon" type="image/png" href="{{url_for('static', filename='images/favicon.png')}}" />
+    <link rel="icon" type="image/png" href="{{url_for('static', filename='assets/favicon.png')}}" />
     <link
       rel="stylesheet"
       href="{{url_for('static', filename='css/index.css')}}"
     />
-    <script
-      type="module"
-      src="{{url_for('static', filename='js/app.js')}}"
-    ></script>
     <title>Adventures Awaits</title>
   </head>
 
@@ -76,7 +72,6 @@
           <div class="img-box">
             <img
               src="{{url_for('static', filename='images/' + destination[3]) }}"
-              alt="Naran"
             />
           </div>
           <div class="text-box">

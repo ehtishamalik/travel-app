@@ -1,5 +1,6 @@
 import uuid
 from PIL import Image
+from sqlalchemy.inspection import inspect
 
 
 def generate_unique_key():
@@ -18,3 +19,6 @@ def save_compressed_image(path: str, img):
         hsize = int((float(image.size[1]) * float(width_percent)))
         image = image.resize((base_width, hsize), Image.LANCZOS)
         image.save(path, optimize=True, format="JPEG")
+
+def sqlalchemy_to_tuple(instance):
+    return tuple(getattr(instance, column.key) for column in inspect(instance).mapper.column_attrs)

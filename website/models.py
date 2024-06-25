@@ -1,95 +1,65 @@
-import sqlite3
-import os
+from sqlalchemy import create_engine, ForeignKey, Column, Integer, String, CHAR
+from sqlalchemy.orm import sessionmaker, declarative_base
+
+Base = declarative_base()
+
+class Person(Base):
+    __tablename__ = "person"
+
+    uid = Column("uid", Integer, primary_key=True)
+    username = Column("username", String)
+    password = Column("password", String)
+    gender = Column("gender", CHAR)
+    age = Column("age", Integer)
+
+    def __init__(self, uid, username, password, gender, age):
+        self.uid = uid
+        self.username = username
+        self.password = password
+        self.gender = gender
+        self.age = age
+
+    def __repr__(self):
+        return f"<{self.uid}, {self.username}, {self.password}, {self.gender}, {self.age}>"
+
+class Messages(Base):
+    __tablename__ = "message"
+
+    uid = Column("uid", Integer, primary_key=True)
+    username = Column("username", String(40))
+    email = Column("email", String(40))
+    message = Column("message", String(400))
+
+    def __init__(self, uid, username, email, message):
+        self.uid = uid
+        self.username = username
+        self.email = email
+        self.message = message
+
+    def __repr__(self):
+        return f"<<{self.uid}, {self.username}, {self.email}, {self.message}>>"
+
+class Destination(Base):
+    __tablename__ = "destination"
+
+    uid = Column("uid", Integer, primary_key=True)
+    name = Column("name", String(30))
+    description = Column("description", String(400))
+    image = Column("image", String(41))
+    # owner = Column(ForeignKey("person.uid"))
+
+    def __init__(self, uid, name, description, image):
+        self.uid = uid
+        self.name = name
+        self.description = description
+        self.image = image
+
+    def __repr__(self):
+        return f"<<{self.uid}, {self.name}, {self.description}, {self.image}>>"
 
 
-class MyDatabase:
-    def __init__(self, db_name="database/my_database.db"):
-        folder_path = os.path.dirname(db_name)
-        if not os.path.exists(folder_path):
-            os.makedirs(folder_path)
+engine = create_engine("sqlite:///database/database.db", echo=False)
+Base.metadata.create_all(bind=engine)
 
-        self.db_name = db_name
-        self.create_database()
-
-    def create_database(self):
-        self.connection = sqlite3.connect(self.db_name, check_same_thread=False)
-        self.cursor = self.connection.cursor()
-        self.create_table_message()
-        self.create_table_destinations()
-
-    def create_table_message(self):
-        self.cursor.execute(
-            """CREATE TABLE IF NOT EXISTS MESSAGES (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        email CHAR(60),
-        name CHAR(60),
-        phone CHAR(15),
-        message CHAR(400))
-        """
-        )
-        self.connection.commit()
-
-    def create_table_destinations(self):
-        self.cursor.execute(
-            """CREATE TABLE IF NOT EXISTS DESTINATIONS (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name CHAR(30),
-        description CHAR(400),
-        image CHAR(40))
-        """
-        )
-        self.connection.commit()
-
-    def add_message(self, email, name, phone, message):
-        try:
-            self.cursor.execute(
-                "INSERT INTO MESSAGES (email, name, phone, message) VALUES (?, ?, ?, ?)",
-                (email, name, phone, message),
-            )
-            self.connection.commit()
-            print("Data Added Successfully")
-        except sqlite3.IntegrityError as e:
-            print("ERROR", e)
-            print("Data not added due to primary key violation.")
-        except Exception as e:
-            print("Error:", e)
-            print("Data not added.")
-
-    def add_destination(self, name, description, image):
-        try:
-            self.cursor.execute(
-                "INSERT INTO DESTINATIONS (name, description, image) VALUES (?, ?, ?)",
-                (name, description, image),
-            )
-            self.connection.commit()
-            print("Data Added Successfully")
-        except sqlite3.IntegrityError as e:
-            print("ERROR", e)
-            print("Data not added due to primary key violation.")
-        except Exception as e:
-            print("Error:", e)
-            print("Data not added.")
-
-    def get_all_messages(self):
-        try:
-            self.cursor.execute("SELECT * FROM MESSAGES")
-            rows = self.cursor.fetchall()
-            return rows
-        except sqlite3.Error as e:
-            print(f"[ ERROR ] {e}")
-            return []
-
-    def get_all_destination(self):
-        try:
-            self.cursor.execute("SELECT * FROM DESTINATIONS")
-            rows = self.cursor.fetchall()
-            return rows
-        except sqlite3.Error as e:
-            print(f"[ ERROR ] {e}")
-            return []
-
-    def close_connection(self):
-        self.connection.close()
-
-
-database = MyDatabase()
+Session = sessionmaker(bind=engine)
+database = Session()

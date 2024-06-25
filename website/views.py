@@ -1,17 +1,24 @@
-from flask import Blueprint, render_template, request, jsonify, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for
 from os import path
-from .models import database
-from .helpers import generate_unique_key, save_compressed_image
+from .models import database, Destination, Messages
+from .helpers import generate_unique_key, save_compressed_image, sqlalchemy_to_tuple
 
 views = Blueprint("views", __name__)
 IMAGES_FOLDER = path.join("website", "static", "images")
 
-
 @views.route("/")
 def home():
-    destinations = database.get_all_destination()
+    try:
+        destinations = database.query(Destination).all()
+    except Exception as e:
+        print(f"[ERROR] {e.orig.args[0]}")
+    else:
+        to_tuple = []
+        for destination in destinations:
+            to_tuple.append(sqlalchemy_to_tuple(destination))
+    
     return render_template(
-        "home.html", destinations=destinations, image_folder=IMAGES_FOLDER
+        "home.html", destinations=to_tuple, image_folder=IMAGES_FOLDER
     )
 
 
@@ -36,12 +43,15 @@ def destination():
     name = request.form.get("desname")
     description = request.form.get("description")
     unique_key = generate_unique_key()
-    unique_key = f"{unique_key}.jpeg"
+    image_name = f"{unique_key}.jpeg"
     try:
-        save_compressed_image(path.join(IMAGES_FOLDER, unique_key), image)
-        database.add_destination(name, description, unique_key)
+        destination = Destination(None, name, description, image_name)
+        database.add(destination)
+        database.commit()
     except Exception as e:
-        print("[ ERROR ]", e)
+        print(f"[ERROR] {e.orig.args[0]}")
+    else:
+        save_compressed_image(path.join(IMAGES_FOLDER, image_name), image)
 
     return redirect(url_for("views.home"))
 
@@ -50,12 +60,13 @@ def destination():
 def submit_info():
     name = request.form.get("name")
     email = request.form.get("email")
-    phone = request.form.get("phone")
     message = request.form.get("message")
-    database.add_message(email, name, phone, message)
+
+    new_messsage = Messages(None, name, email, message)
+    try:
+        database.add(new_messsage)
+        database.commit()
+    except Exception as e:
+        print(f"[ERROR] {e.orig.args[0]}")
+
     return redirect(url_for("views.contact"))
-
-
-@views.route("/database")
-def show_database():
-    return jsonify(database.get_all_messages())
