@@ -46,7 +46,7 @@ class Destination(Base):
     name = Column("name", String(30))
     description = Column("description", String(400))
     image = Column("image", String(41))
-    owner = Column(ForeignKey("person.uid"))
+    # owner = Column(ForeignKey("person.uid"))
 
     def __init__(self, uid, name, description, image):
         self.uid = uid
@@ -56,6 +56,7 @@ class Destination(Base):
 
     def __repr__(self):
         return f"<<{self.uid}, {self.name}, {self.description}, {self.image}>>"
+
 
 engine = create_engine("sqlite:///database/database.db", echo=True)
 Base.metadata.create_all(bind=engine)
