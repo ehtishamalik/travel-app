@@ -1,0 +1,9 @@
+.login-form {
+    width: 50%;
+    max-width: 40rem;
+    margin: 20vh auto 20vh;
+}
+
+.login-form .form-btn {
+    margin: 4rem auto 2rem;
+}
