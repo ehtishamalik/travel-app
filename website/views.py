@@ -6,7 +6,7 @@ from .helpers import generate_unique_key, save_compressed_image, sqlalchemy_to_t
 views = Blueprint("views", __name__)
 IMAGES_FOLDER = path.join("website", "static", "images")
 
-@views.route("/")
+@views.route("/", methods=["GET"])
 def home():
     try:
         destinations = database.query(Destination).all()
@@ -22,17 +22,26 @@ def home():
     )
 
 
-@views.route("/about")
+@views.route("/login", methods=["GET"])
+def login():
+    return render_template("login.html")
+
+@views.route("/register", methods=["GET"])
+def register():
+    return render_template("register.html")
+
+
+@views.route("/about", methods=["GET"])
 def about():
     return render_template("about.html")
 
 
-@views.route("/contact")
+@views.route("/contact", methods=["GET"])
 def contact():
     return render_template("contact.html")
 
 
-@views.route("/upload")
+@views.route("/upload", methods=["GET"])
 def upload():
     return render_template("upload.html")
 

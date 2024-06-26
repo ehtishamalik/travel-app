@@ -1,0 +1,31 @@
+{% extends "index.html" %} {% block content %}
+
+<section class="about">
+  <div class="container">
+    <form action="/login" method="post" class="form login-form">
+      <h1>Register</h1>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" maxlength="40" placeholder="🙌" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" maxlength="40" placeholder="🙌" required />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" minlength="8" maxlength="40" placeholder="🙌" required />
+      </div>
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" name="confirm-password" minlength="8" maxlength="40" placeholder="🙌" required />
+      </div>
+      <button id="submit-btn" type="submit" class="btn-primary btn-secondary form-btn">
+        Register
+      </button>
+      <p class="account-text">Already have an account?</p>
+      <a href="/login" class="btn-tertiary">Login</a>
+    </form>
+  </div>
+</section>
+{% endblock %}

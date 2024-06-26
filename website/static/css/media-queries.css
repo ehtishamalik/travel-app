@@ -165,8 +165,12 @@
   }
 
   .company-address,
-  .form {
+  .contact-form {
     margin-bottom: 2rem;
+  }
+
+  .login-form {
+    margin: 25vh auto 25vh;
   }
 
   .add-btn {
