@@ -7,3 +7,7 @@
 .login-form .form-btn {
     margin: 4rem auto 2rem;
 }
+
+.login-form .account-text {
+    display: inline-block;
+}
