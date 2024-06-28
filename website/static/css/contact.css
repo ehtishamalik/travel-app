@@ -107,8 +107,17 @@
   margin: 8rem auto 2rem;
 }
 
-.form-group p {
+.form-group #char-count {
   position: absolute;
   top: 90%;
   left: 5%;
 }
+
+.form-group .field-msg {
+  color: red;
+  margin-left: 1rem;
+}
+
+/* .form-group #username + .field-msg {
+  color: red;
+} */
