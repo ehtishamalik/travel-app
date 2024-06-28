@@ -1,26 +1,9 @@
-from sqlalchemy import create_engine, ForeignKey, Column, Integer, String, CHAR
+from sqlalchemy import create_engine, ForeignKey, Column, Integer, String, DateTime
 from sqlalchemy.orm import sessionmaker, declarative_base
+from flask_login import UserMixin
+from sqlalchemy.sql import func
 
 Base = declarative_base()
-
-class Person(Base):
-    __tablename__ = "person"
-
-    uid = Column("uid", Integer, primary_key=True)
-    username = Column("username", String)
-    password = Column("password", String)
-    gender = Column("gender", CHAR)
-    age = Column("age", Integer)
-
-    def __init__(self, uid, username, password, gender, age):
-        self.uid = uid
-        self.username = username
-        self.password = password
-        self.gender = gender
-        self.age = age
-
-    def __repr__(self):
-        return f"<{self.uid}, {self.username}, {self.password}, {self.gender}, {self.age}>"
 
 class Messages(Base):
     __tablename__ = "message"
@@ -30,8 +13,7 @@ class Messages(Base):
     email = Column("email", String(40))
     message = Column("message", String(400))
 
-    def __init__(self, uid, username, email, message):
-        self.uid = uid
+    def __init__(self, username, email, message):
         self.username = username
         self.email = email
         self.message = message
@@ -46,17 +28,37 @@ class Destination(Base):
     name = Column("name", String(30))
     description = Column("description", String(400))
     image = Column("image", String(41))
-    # owner = Column(ForeignKey("person.uid"))
+    owner = Column(ForeignKey("user.uid"))
 
-    def __init__(self, uid, name, description, image):
-        self.uid = uid
+    def __init__(self, name, description, image, owner):
         self.name = name
         self.description = description
         self.image = image
+        self.owner = owner
 
     def __repr__(self):
         return f"<<{self.uid}, {self.name}, {self.description}, {self.image}>>"
 
+
+class User(Base, UserMixin):
+    __tablename__ = "user"
+
+    uid = Column("uid", Integer, primary_key=True)
+    username = Column("username", String(40))
+    email = Column("email", String(40), unique=True)
+    password = Column("password", String(256))
+    created_at = Column(DateTime(timezone=True), default=func.now())
+
+    def __init__(self, username, email, password):
+        self.username = username
+        self.email = email
+        self.password = password
+
+    def get_id(self):
+        return str(self.uid)
+    
+    def __repr__(self):
+        return f"<<{self.uid}, {self.username}, {self.email}, {self.password}, {self.created_at}>>"
 
 engine = create_engine("sqlite:///database/database.db", echo=False)
 Base.metadata.create_all(bind=engine)
