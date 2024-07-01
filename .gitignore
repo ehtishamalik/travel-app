@@ -1,5 +1,6 @@
 .venv
 .vscode
+__pycache__
 website/__pycache__
 error.log
 error.log.1
