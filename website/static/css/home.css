@@ -163,6 +163,24 @@
     margin-bottom: 8rem;
 }
 
+.scroll-me svg {
+    animation: fadeInOut 3s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+    }
+
+    70% {
+        opacity: 1;
+    }
+    
+    100% {
+        opacity: 0;
+    }
+}
+
 .add-btn {
     position: fixed;
     right: 3rem;
@@ -177,22 +195,4 @@
 .add-btn a {
     color: #f4f4f4;
     font-size: 4rem;
-}
-
-.scroll-me svg {
-    animation: fadeInOut 5s ease-in-out infinite;
-}
-
-@keyframes fadeInOut {
-    0% {
-        opacity: 0;
-    }
-
-    70% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-    }
 }
