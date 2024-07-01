@@ -19,7 +19,7 @@
   </head>
 
   <body>
-    <nav class="navbar bg-dark mb-5">
+    <nav class="navbar {{ 'pos-absolute' if view == 'home' else 'bg-dark' }}">
       <div class="container">
         <a class="logo text-white text-uppercase" href="/">MT</a>
         <ul class="nav-items">

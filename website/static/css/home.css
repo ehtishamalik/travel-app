@@ -14,8 +14,9 @@
 }
 
 .navbar {
+    z-index: 1;
+    width: 100%;
     padding: 1rem;
-    position: relative;
 }
 
 .navbar .logo {

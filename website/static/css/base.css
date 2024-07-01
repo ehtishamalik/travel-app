@@ -122,6 +122,10 @@ p {
     position: relative;
 }
 
+.pos-absolute {
+    position: absolute;
+}
+
 .alert {
     display: flex;
     justify-content: space-between;

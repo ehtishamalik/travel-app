@@ -22,7 +22,7 @@ def home():
             to_tuple.append(sqlalchemy_to_tuple(destination))
     
     return render_template(
-        "home.html", destinations=to_tuple, image_folder=IMAGES_FOLDER
+        "home.html", destinations=to_tuple, image_folder=IMAGES_FOLDER, view='home'
     )
 
 
@@ -35,7 +35,6 @@ def login():
             user = database.query(User).filter_by(email=email).first()
             if user and check_password_hash(user.password, password):
                 login_user(user, remember=True)
-                flash("Logged in successfully!", category=SUCCESS)
                 return redirect(url_for("views.home"))
             else:
                 flash("Incorrect Email or Password", category=ERROR)
