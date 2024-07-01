@@ -12,6 +12,12 @@
     --color-gray: #555555;
     --color-black: #333333;
     --color-red: #e63946;
+    --color-error: #ff0000;
+    --bg-error: #ffcdcd;
+    --color-success: #008000;
+    --bg-success: #cdffcd;
+    --color-message: #0000ff;
+    --bg-message: #cdcdff;
 }
 
 html {
@@ -114,4 +120,37 @@ p {
 
 .pos-relative {
     position: relative;
+}
+
+.alert {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 3rem;
+    padding: 1rem;
+    border: 0.2rem solid;
+    font-size: 1.6rem;
+    border-radius: 1rem;
+}
+
+.alert .close {
+    border: none;
+    background: transparent;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+.alert-success {
+    border-color: var(--color-success);
+    background-color: var(--bg-success);
+}
+
+.alert-message {
+    border-color: var(--color-message);
+    background-color: var(--bg-message);
+}
+
+.alert-error {
+    border-color: var(--color-error);
+    background-color: var(--bg-error);
 }

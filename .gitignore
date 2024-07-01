@@ -1,6 +1,8 @@
 .venv
 .vscode
 website/__pycache__
+error.log
+error.log.1
 
 # Ignore database
 database/database.db

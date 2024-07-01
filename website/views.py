@@ -1,9 +1,10 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, flash, current_app
 from flask_login import login_user, logout_user, login_required, current_user
 from os import path
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import database, Destination, Messages, User
 from .helpers import generate_unique_key, save_compressed_image, sqlalchemy_to_tuple
+from .constants import SUCCESS, ERROR
 
 views = Blueprint("views", __name__)
 IMAGES_FOLDER = path.join("website", "static", "images")
@@ -14,7 +15,7 @@ def home():
     try:
         destinations = database.query(Destination).all()
     except Exception as e:
-        print(f"[ERROR] {e}")
+        flash(f"Something went wrong, please reload the page", category=ERROR)
     else:
         to_tuple = []
         for destination in destinations:
@@ -33,13 +34,13 @@ def login():
         try:
             user = database.query(User).filter_by(email=email).first()
             if user and check_password_hash(user.password, password):
-                print("Logged in successfully!")
                 login_user(user, remember=True)
+                flash("Logged in successfully!", category=SUCCESS)
                 return redirect(url_for("views.home"))
             else:
-                print("Incorrect Username or Password")
+                flash("Incorrect Email or Password", category=ERROR)
         except Exception as e:
-            print(f"[ERROR] {e}")
+            flash(f"We could not log you in, please try again", category=ERROR)
     return render_template("login.html")
 
 
@@ -58,22 +59,24 @@ def register():
         password = request.form.get("password")
 
         if len(username) > 40:
-            print("Username must be smaller than 40 characters")
+            flash("Username must be smaller than 40 characters.", category=ERROR)
         elif len(username) < 8:
-            print("Username must be longer than 8 characters")
-        elif len(password) > 40:
-            print("Username must be smaller than 40 characters")
+            flash("Username must be longer than 6 characters.", category=ERROR)
         elif len(password) < 8:
-            print("Username must be longer than 8 characters")
+            flash("Username must be longer than 6 characters.", category=ERROR)
         else:
             new_user = User(username, email, generate_password_hash(password))
             try:
                 database.add(new_user)
                 database.commit()
             except Exception as e:
-                print(f"[ERROR] {e}")
+                if "UNIQUE constraint failed: user.email" == e.orig.args[0]:
+                    flash("Email already exists.", category=ERROR)
+                else:
+                    flash("Could not register, please try again.", category=ERROR)
+                current_app.logger.error(f"[ERROR]\n{e}")
             else:
-                print("[SUCCESS] Account created!")
+                flash("Account created successfully, please log in.", category=SUCCESS)
                 return redirect(url_for("views.login"))
     return render_template("register.html")
 
@@ -95,7 +98,10 @@ def contact():
             database.add(new_messsage)
             database.commit()
         except Exception as e:
-            print(f"[ERROR] {e}")
+            flash("Something went wrong, please try again.", category=ERROR)
+            current_app.logger.error(f"[ERROR]\n{e}")
+        else:
+            flash("Thank you for your feedback.", category=SUCCESS)
 
     return render_template("contact.html")
 
@@ -114,7 +120,8 @@ def upload():
             database.add(destination)
             database.commit()
         except Exception as e:
-            print(f"[ERROR] {e}")
+            flash("Could not add you destination, please try again", category=ERROR)
+            current_app.logger.error(f"[ERROR]\n{e}")
         else:
             save_compressed_image(path.join(IMAGES_FOLDER, image_name), image)
     return render_template("upload.html")
