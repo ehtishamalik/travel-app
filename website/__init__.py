@@ -5,7 +5,7 @@ from .views import views
 from .models import database, User
 
 
-def main():
+def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = os.urandom(24).hex()
     app.register_blueprint(views, url_prefix="/")

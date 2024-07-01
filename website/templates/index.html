@@ -19,7 +19,7 @@
   </head>
 
   <body>
-    <nav class="navbar bg-dark mb-5">
+    <nav class="navbar {{ 'pos-absolute' if view == 'home' else 'bg-dark' }}">
       <div class="container">
         <a class="logo text-white text-uppercase" href="/">MT</a>
         <ul class="nav-items">
@@ -38,6 +38,19 @@
         </ul>
       </div>
     </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}" role="alert">
+            {{ message }}
+            <button type="button" class="close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
 
     {% block content %} {% endblock %}
 
