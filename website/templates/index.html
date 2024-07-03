@@ -10,7 +10,11 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="icon" type="image/png" href="{{url_for('static', filename='assets/favicon.png')}}" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{{url_for('static', filename='assets/favicon.png')}}"
+    />
     <link
       rel="stylesheet"
       href="{{url_for('static', filename='css/index.css')}}"
@@ -39,20 +43,15 @@
       </div>
     </nav>
 
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for category, message in messages %}
-          <div class="alert alert-{{ category }}" role="alert">
-            {{ message }}
-            <button type="button" class="close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
-
-    {% block content %} {% endblock %}
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %}
+    <div class="alert alert-{{ category }}" role="alert">
+      {{ message }}
+      <button type="button" class="close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %} {% endif %} {% endwith %} {% block content %} {% endblock %}
 
     <footer class="footer">
       <div class="social-media-links">

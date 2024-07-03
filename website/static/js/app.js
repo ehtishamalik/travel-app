@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     logoEnterActive = true;
     logo.textContent = "T";
-  
+
     function typeEffect(index) {
       if (index < name.length) {
         logo.textContent += name[index];
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     typeEffect(1);
   };
-  
+
   const mouseLeaveOnLogo = () => {
     if (logoLeaveActive) return;
     if (logoEnterActive) {
@@ -44,8 +44,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  const flashMessages = document.querySelectorAll('.alert button.close');
-  const logo = document.querySelector('.navbar .logo');
+  const flashMessages = document.querySelectorAll(".alert button.close");
+  const logo = document.querySelector(".navbar .logo");
   const textArea = document.getElementById("message");
   const charCount = document.getElementById("char-count");
   const registerButton = document.getElementById("register-btn");
@@ -53,27 +53,29 @@ document.addEventListener("DOMContentLoaded", function () {
   const usernameField = document.getElementById("username");
   const passwordField = document.getElementById("password");
   const confirmPasswordField = document.getElementById("confirm-password");
-  
-  logo?.addEventListener('mouseleave', mouseLeaveOnLogo);
-  logo?.addEventListener('mouseenter', mouseEnterOnLogo);
+
+  logo?.addEventListener("mouseleave", mouseLeaveOnLogo);
+  logo?.addEventListener("mouseenter", mouseEnterOnLogo);
 
   flashMessages?.forEach((button) => {
-    button.addEventListener('click', function () {
+    button.addEventListener("click", function () {
       const flashMessage = button.parentElement;
-      flashMessage.style.display = 'none';
+      flashMessage.style.display = "none";
     });
   });
 
   textArea?.addEventListener("input", () => {
     const currentLength = textArea.value.length;
     const maxLength = textArea.getAttribute("maxlength");
-    charCount.textContent = charCount ? `${currentLength} / ${maxLength}` : '';
+    charCount.textContent = charCount ? `${currentLength} / ${maxLength}` : "";
   });
 
   registerButton?.addEventListener("click", (event) => {
     let isValid = true;
     if (/\s/.test(usernameField.value)) {
-      usernameField.setCustomValidity("Spaces are not allowed in the username.");
+      usernameField.setCustomValidity(
+        "Spaces are not allowed in the username."
+      );
       usernameField.reportValidity();
       isValid = false;
     }
@@ -84,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
       confirmPasswordField.reportValidity();
       isValid = false;
     }
-  
+
     if (!isValid) {
       event.preventDefault();
     } else {
