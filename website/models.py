@@ -5,6 +5,7 @@ from sqlalchemy.sql import func
 
 Base = declarative_base()
 
+
 class Messages(Base):
     __tablename__ = "message"
 
@@ -20,6 +21,7 @@ class Messages(Base):
 
     def __repr__(self):
         return f"<<{self.uid}, {self.username}, {self.email}, {self.message}>>"
+
 
 class Destination(Base):
     __tablename__ = "destination"
@@ -56,9 +58,10 @@ class User(Base, UserMixin):
 
     def get_id(self):
         return str(self.uid)
-    
+
     def __repr__(self):
         return f"<<{self.uid}, {self.username}, {self.email}, {self.password}, {self.created_at}>>"
+
 
 engine = create_engine("sqlite:///database/database.db", echo=False)
 Base.metadata.create_all(bind=engine)
