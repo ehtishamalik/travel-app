@@ -2,26 +2,12 @@
   padding: 3rem;
 }
 
-.company-address,
-.form {
-  height: auto;
+.contact-form-wrapper {
+  display: flex;
 }
 
 .contact-form-wrapper .company-address {
-  float: left;
-  width: 49%;
-  height: 65rem;
-}
-
-.contact-form-wrapper .form {
-  float: right;
-  width: 49%;
-}
-
-.contact-form-wrapper::after {
-  content: "";
-  display: block;
-  clear: both;
+  flex-basis: 45%;
 }
 
 .company-image img {
@@ -32,15 +18,13 @@
   border-radius: 20px;
 }
 
-.address-group {
-  margin-bottom: 3rem;
-}
-
 .company-address,
 .form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 2rem;
-  border-radius: 20px;
-  background-color: #f4f4f4;
+  border-radius: 2rem;
 }
 
 .company-address .address-group i {
@@ -58,26 +42,26 @@
   content: "";
   display: block;
   width: 98%;
-  border: 0.3rem solid #e63946;
+  border: 0.3rem solid var(--color-red);
 }
 
 .form label {
   display: block;
   font-size: 1.6rem;
   font-weight: 500;
-  color: #555555;
+  color: var(--color-gray);
   margin-bottom: 0.3em;
 }
 
 .form label::after {
   content: "*";
-  color: #e63946;
+  color: var(--color-red);
 }
 
 .form input,
 .form textarea {
   width: 100%;
-  color: #333333;
+  color: var(--color-black);
   border-radius: 0.5rem;
   padding: 0.5rem;
   border-width: 1px;
@@ -95,24 +79,12 @@
   margin: 1em 0;
 }
 
-.form-btn {
-  display: block;
-  margin: 4rem auto 2rem;
-  font-size: 1.8rem;
-  cursor: pointer;
-}
-
-.contact-form .form-btn {
-  margin: 8rem auto 2rem;
+.form #submit-btn {
+  margin: 2rem auto 0;
 }
 
 .form-group #char-count {
   position: absolute;
   top: 90%;
   left: 5%;
-}
-
-.form-group .field-msg {
-  color: red;
-  margin-left: 1rem;
 }

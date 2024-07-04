@@ -1,41 +1,42 @@
-.btn-primary {
-  display: inline-block;
-  font-weight: 500;
-  text-transform: uppercase;
-  background-size: 200% 100%;
-  padding: 0.6em 1.2em;
-  border-radius: 3rem;
-  margin: 0.5em 0;
-  color: #e63946;
-  background-color: #f4f4f4;
-  outline: none;
-  transition: background-color 0.5s ease, color 0.5s ease;
-}
-
-.btn-primary:hover {
-  background-color: #e63946;
-  color: #f4f4f4;
-}
-
-.btn-secondary {
-  border: 0.1rem solid #e63946;
-}
-
-.btn-tertiary {
+.button {
   display: inline-block;
   font-size: 1.4rem;
   font-weight: 500;
-  text-transform: uppercase;
-  background-size: 200% 100%;
   margin: 0.5em 0;
-  color: #e63946;
+  color: var(--color-red);
   outline: none;
+  cursor: pointer;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.button.is-style-primary {
+  background-color: var(--color-white);
+  padding: 0.6em 1.2em;
+  border-radius: 3rem;
+  text-transform: uppercase;
+}
+
+.button.is-style-primary:hover {
+  background-color: var(--color-red);
+  color: var(--color-white);
+}
+
+.button.is-style-secondary {
+  background-color: var(--color-white);
+  border: 0.1rem solid var(--color-red);
+  padding: 0.6em 1.2em;
+  border-radius: 3rem;
+  text-transform: uppercase;
+}
+
+.button.is-style-tertiary {
+  text-transform: capitalize;
   border-bottom: 0.1rem solid transparent;
   transition: border-bottom 0.5s ease, color 0.5s ease;
 }
 
-.btn-tertiary:hover {
-  border-bottom: 0.1rem solid #e63946;
+.button.is-style-tertiary:hover {
+  border-bottom: 0.1rem solid var(--color-red);
 }
 
 .a-link {
@@ -60,4 +61,63 @@
 
 .logo-transition:hover {
   font-size: 3.6rem;
+}
+
+.navbar {
+  z-index: 1;
+  width: 100%;
+  padding: 1rem;
+}
+
+.navbar .navbar__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar .logo {
+  min-width: 22rem;
+  text-align: center;
+  color: var(--color-white);
+  text-transform: uppercase;
+}
+
+.navbar .nav-items .nav-item {
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  text-transform: uppercase;
+}
+
+.alert {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 3rem;
+  padding: 1rem;
+  border: 0.2rem solid;
+  font-size: 1.6rem;
+  border-radius: 1rem;
+}
+
+.alert .close {
+  border: none;
+  background: transparent;
+  font-size: 2.5rem;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.alert-success {
+  border-color: var(--color-success);
+  background-color: var(--bg-success);
+}
+
+.alert-message {
+  border-color: var(--color-message);
+  background-color: var(--bg-message);
+}
+
+.alert-error {
+  border-color: var(--color-error);
+  background-color: var(--bg-error);
 }

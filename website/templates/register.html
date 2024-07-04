@@ -1,11 +1,11 @@
 {% extends "index.html" %} {% block content %}
 
-<section class="about">
+<section class="register">
   <div class="container">
     <form
       action="/register"
       method="post"
-      class="form login-form"
+      class="form register-wrapper"
       id="registration-form"
     >
       <h1>Register</h1>
@@ -59,15 +59,16 @@
         />
         <p class="field-msg"></p>
       </div>
-      <button
-        id="register-btn"
-        type="submit"
-        class="btn-primary btn-secondary form-btn"
-      >
+      <button id="register-btn" type="submit" class="button is-style-secondary">
         Register
       </button>
-      <p class="account-text">Already have an account?</p>
-      <a href="/login" class="btn-tertiary">Login</a>
+      <p class="account-text">
+        Already have an account?<a
+          href="/login"
+          class="button is-style-tertiary"
+          >Login</a
+        >
+      </p>
     </form>
   </div>
 </section>

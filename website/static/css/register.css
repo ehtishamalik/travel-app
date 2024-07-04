@@ -1,13 +1,20 @@
-.login-form {
-  width: 50%;
-  max-width: 40rem;
-  margin: 20vh auto 20vh;
+.register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
 }
 
-.login-form .form-btn {
-  margin: 4rem auto 2rem;
+.register .register-wrapper {
+  width: 40vw;
+  background-color: var(--color-light-gray);
+  border-radius: 2rem;
 }
 
-.login-form .account-text {
-  display: inline-block;
+.register .register-wrapper .button.is-style-secondary {
+  margin: 2rem auto 1rem;
+}
+
+.register .register-wrapper .account-text a {
+  margin-left: 0.5rem;
 }
