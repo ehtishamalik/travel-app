@@ -1,18 +1,48 @@
 {% extends "index.html" %} {% block content %}
 
 <section class="upload mb-10">
-  <form action="/upload" class="form upload-form" method="post" enctype="multipart/form-data">
+  <form
+    action="/upload"
+    class="form upload-form"
+    method="post"
+    enctype="multipart/form-data"
+  >
     <div class="form-group">
       <label for="desname">Destination Name</label>
-      <input type="text" maxlength="30" name="desname" id="desname"  placeholder="🙌" required>
+      <input
+        type="text"
+        maxlength="30"
+        name="desname"
+        id="desname"
+        placeholder="🙌"
+        required
+      />
     </div>
     <div class="form-group pos-relative">
       <label for="message">Description</label>
-      <textarea name="description" id="message" cols="30" rows="10" maxlength="400"  placeholder="🙌" required></textarea>
+      <textarea
+        name="description"
+        id="message"
+        cols="30"
+        rows="10"
+        maxlength="400"
+        placeholder="🙌"
+        required
+      ></textarea>
       <p id="char-count">0 / 400</p>
     </div>
-    <input class="image-btn" type="file" accept=".png,.jpg,.jpeg" name="image" required>
-    <button id="submit-btn" type="submit" class="btn-primary btn-secondary form-btn">
+    <input
+      class="image-btn"
+      type="file"
+      accept=".png,.jpg,.jpeg"
+      name="image"
+      required
+    />
+    <button
+      id="submit-btn"
+      type="submit"
+      class="btn-primary btn-secondary form-btn"
+    >
       Submit
     </button>
   </form>

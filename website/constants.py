@@ -1,2 +1,2 @@
-SUCCESS = 'success'
-ERROR = 'error'
+SUCCESS = "success"
+ERROR = "error"

@@ -1,4 +1,12 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash, current_app
+from flask import (
+    Blueprint,
+    render_template,
+    request,
+    redirect,
+    url_for,
+    flash,
+    current_app,
+)
 from flask_login import login_user, logout_user, login_required, current_user
 from os import path
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -8,6 +16,7 @@ from .constants import SUCCESS, ERROR
 
 views = Blueprint("views", __name__)
 IMAGES_FOLDER = path.join("website", "static", "images")
+
 
 @views.route("/", methods=["GET"])
 @login_required
@@ -20,9 +29,9 @@ def home():
         to_tuple = []
         for destination in destinations:
             to_tuple.append(sqlalchemy_to_tuple(destination))
-    
+
     return render_template(
-        "home.html", destinations=to_tuple, image_folder=IMAGES_FOLDER, view='home'
+        "home.html", destinations=to_tuple, image_folder=IMAGES_FOLDER, view="home"
     )
 
 
@@ -124,4 +133,3 @@ def upload():
         else:
             save_compressed_image(path.join(IMAGES_FOLDER, image_name), image)
     return render_template("upload.html")
-

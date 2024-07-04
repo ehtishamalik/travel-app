@@ -7,16 +7,15 @@ from .models import database, User
 
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = os.urandom(24).hex()
+    app.config["SECRET_KEY"] = os.urandom(24).hex()
     app.register_blueprint(views, url_prefix="/")
 
     login_manager = LoginManager()
     login_manager.login_view = "views.login"
     login_manager.init_app(app)
 
-
     @login_manager.user_loader
     def load_user(id):
         return database.query(User).filter_by(uid=int(id)).first()
-    
+
     return app

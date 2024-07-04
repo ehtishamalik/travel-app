@@ -1,0 +1,16 @@
+{
+  "name": "travel-app",
+  "version": "1.0.0",
+  "description": "An application to manage users travel history",
+  "main": "app.py",
+  "repository": "git@github.com:ehtishamalik/travel-app.git",
+  "author": "ehtishamalik <malikehtishamali334@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "flask --app app run",
+    "demo": "flask --app app run --debug",
+    "format": "black ./website",
+    "pip:install": "pip install -r requirements.txt",
+    "pip:freeze": "pip freeze > requirements.txt"
+  }
+}

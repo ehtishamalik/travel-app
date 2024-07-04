@@ -5,9 +5,7 @@
     <h1 class="text-uppercase text-bolder text-white">
       Journey Beyond Borders
     </h1>
-    <h3 class="text-uppercase text-white">
-      Unforgettable Travel Experiences
-    </h3>
+    <h3 class="text-uppercase text-white">Unforgettable Travel Experiences</h3>
     <a class="button btn-primary" href="#explore-places">Explore Places</a>
   </div>
   <div class="add-btn">
@@ -29,8 +27,8 @@
 
 <section class="showcase" id="explore-places">
   <div class="container">
-    {% for destination in destinations %}
-    {% set row_class = 'row1' if destination[0] % 2 == 1 else 'row2' %}
+    {% for destination in destinations %} {% set row_class = 'row1' if
+    destination[0] % 2 == 1 else 'row2' %}
     <div class="row {{ row_class }}">
       <div class="img-box">
         <img
@@ -57,16 +55,16 @@
       <i class="fas fa-route fa-2x text-red"></i>
       <h2>Adventurous</h2>
       <p class="text-normal">
-        Embark on thrilling journeys to breathtaking destinations, where
-        daring adventures beckon at every turn.
+        Embark on thrilling journeys to breathtaking destinations, where daring
+        adventures beckon at every turn.
       </p>
     </div>
     <div class="box box-even">
       <i class="fas fa-strikethrough fa-2x"></i>
       <h2>Affordable</h2>
       <p class="text-normal">
-        Satisfy your wanderlust without breaking the bank, with
-        budget-friendly travel options and unbeatable deals.
+        Satisfy your wanderlust without breaking the bank, with budget-friendly
+        travel options and unbeatable deals.
       </p>
     </div>
     <div class="box box-odd">
