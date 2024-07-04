@@ -16,97 +16,31 @@
   transform: translate(-50%, -50%);
 }
 
-.row {
-  height: 30rem;
-  margin-bottom: 10rem;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0px 0px 10px 2px #555555;
-  transition: box-shadow 0.5s ease;
-}
-
-.row:hover {
-  box-shadow: 0px 0px 20px 2px #555555;
-}
-
-.row1 .img-box,
-.row2 .text-box {
-  float: left;
-  width: 50%;
-}
-
-.row1 .text-box,
-.row2 .img-box {
-  float: right;
-  width: 50%;
-}
-
-.row1::after,
-.row2::after {
-  display: block;
-  content: "";
-  clear: both;
-}
-
-.row .img-box {
-  height: 100%;
-}
-
-.row .text-box__inner {
-  padding: 3rem;
-  height: 75%;
-}
-
-.row .text-box {
-  height: 100%;
-  background-color: #f4f4f4;
-}
-
-.row .img-box img {
-  display: inline-block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.row .button-box {
-  padding: 0 3rem;
-}
-
-.features {
-  margin-bottom: 10rem;
+.features .feature-boxes {
+  display: flex;
 }
 
 .features .box {
-  width: 33.33%;
   padding: 2rem;
   height: 20rem;
   text-align: center;
-  float: left;
-  box-shadow: 5px 5px 10px #555555;
+  box-shadow: 5px 5px 10px var(--color-gray);
+  color: var(--color-white);
 }
 
-.feature-boxes::after {
-  content: "";
-  display: block;
-  clear: both;
+.features .box.box-odd {
+  background-color: var(--color-bg);
 }
 
-.box-odd {
-  background-color: #263238;
-  color: #f4f4f4;
-}
-
-.box-even {
-  background-color: #e63946;
-  color: #f4f4f4;
+.features .box.box-even {
+  background-color: var(--color-red);
 }
 
 .footer {
-  background-color: #263238;
+  background-color: var(--color-bg);
   text-align: center;
   padding: 1rem 2rem;
-  color: #f4f4f4;
+  color: var(--color-white);
 }
 
 .footer .social-media-links {
@@ -128,7 +62,7 @@
   min-height: 25px;
   text-align: center;
   margin-top: 0.5rem;
-  margin-bottom: 8rem;
+  margin-bottom: 3rem;
 }
 
 .scroll-me svg {
@@ -147,20 +81,4 @@
   100% {
     opacity: 0;
   }
-}
-
-.add-btn {
-  position: fixed;
-  right: 3rem;
-  top: 85vh;
-  background-color: #e63946;
-  height: 5rem;
-  width: 5rem;
-  border-radius: 50%;
-  text-align: center;
-}
-
-.add-btn a {
-  color: #f4f4f4;
-  font-size: 4rem;
 }

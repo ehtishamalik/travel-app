@@ -6,10 +6,7 @@
       Journey Beyond Borders
     </h1>
     <h3 class="text-uppercase text-white">Unforgettable Travel Experiences</h3>
-    <a class="button btn-primary" href="#explore-places">Explore Places</a>
-  </div>
-  <div class="add-btn">
-    <a href="/upload">+</a>
+    <a class="button is-style-primary" href="/explore">Explore Places</a>
   </div>
 </header>
 <div class="scroll-me">
@@ -27,29 +24,57 @@
 
 <section class="showcase" id="explore-places">
   <div class="container">
-    {% for destination in destinations %} {% set row_class = 'row1' if
-    destination[0] % 2 == 1 else 'row2' %}
-    <div class="row {{ row_class }}">
-      <div class="img-box">
+    <div class="content-side-image image-right">
+      <div class="img-container">
         <img
-          src="{{url_for('static', filename='images/' + destination[3]) }}"
+          src="{{url_for('static', filename='assets/discover-with-friends.jpeg' ) }}"
         />
       </div>
-      <div class="text-box">
-        <div class="text-box__inner">
-          <h2 class="heading-box text-black">{{ destination[1] }}</h2>
-          <p class="text-gray">{{ destination[2] }}</p>
+      <div class="content-container">
+        <div class="text-container">
+          <h2 class="heading-box text-black">
+            Discover and Share Adventures with Friends
+          </h2>
+          <p class="text-gray">
+            There's nothing like exploring new destinations with your best
+            friends by your side. Capture the magic of your adventures and share
+            your stories, tips, and photos with our vibrant community of travel
+            enthusiasts. Your unforgettable experiences can inspire others to
+            embark on their own journeys and create lifelong memories with their
+            friends.
+          </p>
         </div>
-        <div class="button-box">
-          <a class="button btn-primary btn-secondary" href="/contact">book</a>
+        <div class="button-container">
+          <a class="button is-style-tertiary" href="/contact">learn more</a>
         </div>
       </div>
     </div>
-    {% endfor %}
+    <div class="content-side-image image-left">
+      <div class="img-container">
+        <img
+          src="{{url_for('static', filename='assets/romantic-for-couples.jpeg' ) }}"
+        />
+      </div>
+      <div class="content-container">
+        <div class="text-container">
+          <h2 class="heading-box text-black">Romantic Getaways for Couples</h2>
+          <p class="text-gray">
+            Escape the routine and discover the world with your special someone.
+            Whether it's a cozy beach retreat or an adventurous mountain hike,
+            share your travel stories and romantic moments with our community.
+            Inspire other couples to explore new places and create beautiful
+            memories together. Your journey of love and adventure awaits.
+          </p>
+        </div>
+        <div class="button-container">
+          <a class="button is-style-tertiary" href="/contact">learn more</a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="features">
+<section class="features mb-10">
   <div class="container feature-boxes">
     <div class="box box-odd">
       <i class="fas fa-route fa-2x text-red"></i>

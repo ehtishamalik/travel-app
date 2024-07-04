@@ -19,7 +19,6 @@ IMAGES_FOLDER = path.join("website", "static", "images")
 
 
 @views.route("/", methods=["GET"])
-@login_required
 def home():
     try:
         destinations = database.query(Destination).all()
@@ -114,7 +113,7 @@ def contact():
     return render_template("contact.html")
 
 
-@views.route("/upload", methods=["GET", "POST"])
+@views.route("/share", methods=["GET", "POST"])
 @login_required
 def upload():
     if request.method == "POST":
@@ -132,4 +131,4 @@ def upload():
             current_app.logger.error(f"[ERROR]\n{e}")
         else:
             save_compressed_image(path.join(IMAGES_FOLDER, image_name), image)
-    return render_template("upload.html")
+    return render_template("share.html")

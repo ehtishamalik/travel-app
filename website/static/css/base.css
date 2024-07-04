@@ -12,6 +12,7 @@
   --color-gray: #555555;
   --color-black: #333333;
   --color-red: #e63946;
+  --color-bg: #263238;
   --color-error: #ff0000;
   --bg-error: #ffcdcd;
   --color-success: #008000;
@@ -27,7 +28,7 @@ html {
 
 body {
   font-family: "Montserrat", sans-serif;
-  background-color: var(--color-light-gray);
+  background-color: var(--color-white);
 }
 
 ul li {
@@ -126,67 +127,8 @@ p {
   position: absolute;
 }
 
-.alert {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 1rem 3rem;
-  padding: 1rem;
-  border: 0.2rem solid;
-  font-size: 1.6rem;
-  border-radius: 1rem;
-}
-
-.alert .close {
-  border: none;
-  background: transparent;
-  font-size: 2.5rem;
-  cursor: pointer;
-  margin-right: 1rem;
-}
-
-.alert-success {
-  border-color: var(--color-success);
-  background-color: var(--bg-success);
-}
-
-.alert-message {
-  border-color: var(--color-message);
-  background-color: var(--bg-message);
-}
-
-.alert-error {
-  border-color: var(--color-error);
-  background-color: var(--bg-error);
-}
-
 .container {
   max-width: 144rem;
   padding: 0 4rem;
   margin: 0 auto;
-}
-
-.navbar {
-  z-index: 1;
-  width: 100%;
-  padding: 1rem;
-}
-
-.navbar .navbar__container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.navbar .logo {
-  min-width: 22rem;
-  text-align: center;
-  color: var(--color-white);
-  text-transform: uppercase;
-}
-
-.navbar .nav-items .nav-item {
-  display: inline-block;
-  padding: 0.3rem 1rem;
-  text-transform: uppercase;
 }
