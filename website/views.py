@@ -82,4 +82,6 @@ def explore():
         flash("Something went wrong, please reload the page", category="error")
         current_app.logger.error(f"[ERROR]\n{e}\n\n")
         to_tuple = []
-    return render_template("explore.html", destinations=to_tuple, view="explore", user=current_user)
+    return render_template(
+        "explore.html", destinations=to_tuple, view="explore", user=current_user
+    )
