@@ -57,15 +57,6 @@ document.addEventListener("DOMContentLoaded", function () {
   logo?.addEventListener("mouseleave", mouseLeaveOnLogo);
   logo?.addEventListener("mouseenter", mouseEnterOnLogo);
 
-  window.addEventListener("scroll", function () {
-    const navbar = document.querySelector(".navbar");
-    if (window.scrollY > 250) {
-      navbar.classList.add("bg-dark");
-    } else {
-      navbar.classList.remove("bg-dark");
-    }
-  });
-
   flashMessages.forEach((button) => {
     const timeout = setTimeout(() => {
       button.parentElement.remove();
