@@ -8,7 +8,7 @@ from flask import (
     session,
     current_app,
 )
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import database, User
 from .constants import SUCCESS, ERROR
@@ -39,7 +39,7 @@ def login():
 
     if request.args.get("next"):
         session["next"] = request.args.get("next")
-    return render_template("login.html")
+    return render_template("login.html", view="login", user=current_user)
 
 
 @auth.route("/logout")
@@ -78,4 +78,4 @@ def register():
             else:
                 flash("Account created successfully, please log in.", category=SUCCESS)
                 return redirect(url_for("auth.login"))
-    return render_template("register.html")
+    return render_template("register.html", view="register", user=current_user)

@@ -19,12 +19,12 @@ IMAGES_FOLDER = path.join("website", "static", "images")
 
 @views.route("/", methods=["GET"])
 def home():
-    return render_template("home.html", view="home")
+    return render_template("home.html", view="home", user=current_user)
 
 
 @views.route("/about", methods=["GET"])
 def about():
-    return render_template("about.html")
+    return render_template("about.html", view="about", user=current_user)
 
 
 @views.route("/contact", methods=["GET", "POST"])
@@ -45,7 +45,7 @@ def contact():
         else:
             flash("Thank you for your feedback.", category=SUCCESS)
 
-    return render_template("contact.html")
+    return render_template("contact.html", view="contact", user=current_user)
 
 
 @views.route("/share", methods=["GET", "POST"])
@@ -69,7 +69,7 @@ def share():
             save_compressed_image(path.join(IMAGES_FOLDER, image_name), image)
             flash("Destination added successfully.", category=SUCCESS)
             return redirect(url_for("views.explore"))
-    return render_template("share.html")
+    return render_template("share.html", view="share", user=current_user)
 
 
 @views.route("/explore", methods=["GET"])
@@ -82,4 +82,4 @@ def explore():
         flash("Something went wrong, please reload the page", category="error")
         current_app.logger.error(f"[ERROR]\n{e}\n\n")
         to_tuple = []
-    return render_template("explore.html", destinations=to_tuple)
+    return render_template("explore.html", destinations=to_tuple, view="explore", user=current_user)
