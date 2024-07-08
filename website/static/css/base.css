@@ -117,10 +117,6 @@ section {
   text-transform: uppercase;
 }
 
-.mb-10 {
-  margin-bottom: 10rem;
-}
-
 .mb-5 {
   margin-bottom: 5rem;
 }
@@ -129,8 +125,10 @@ section {
   position: relative;
 }
 
-.pos-absolute {
-  position: absolute;
+.bg-inputs {
+  border-radius: 2rem;
+  padding: 2rem;
+  background-color: var(--color-light-gray);
 }
 
 .container {
