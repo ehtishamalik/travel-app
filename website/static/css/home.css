@@ -50,7 +50,6 @@
 .footer .social-media-links i {
   cursor: pointer;
   padding: 1rem;
-  transition: transform 0.5s ease;
 }
 
 .footer .social-media-links i:hover {
