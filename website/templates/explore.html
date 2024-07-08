@@ -1,31 +1,6 @@
 {% extends "index.html" %} {% block content %}
 
-<header class="header">
-  <div class="header-content">
-    <h1 class="text-uppercase text-bolder text-white">
-      Journey Beyond Borders
-    </h1>
-    <h3 class="text-uppercase text-white">Unforgettable Travel Experiences</h3>
-    <a class="button btn-primary" href="#explore-places">Explore Places</a>
-  </div>
-  <div class="add-btn">
-    <a href="/upload">+</a>
-  </div>
-</header>
-<div class="scroll-me">
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
-    <path
-      d="m12 17.586-7.293-7.293-1.414 1.414L12 20.414l8.707-8.707-1.414-1.414L12 17.586z"
-      fill="#555555"
-    />
-    <path
-      d="m20.707 5.707-1.414-1.414L12 11.586 4.707 4.293 3.293 5.707 12 14.414l8.707-8.707z"
-      fill="#555555"
-    />
-  </svg>
-</div>
-
-<section class="showcase" id="explore-places">
+<section class="showcase">
   <div class="container">
     {% for destination in destinations %} {% set row_class = 'image-right' if
     destination[0] % 2 == 1 else 'image-left' %}
@@ -41,40 +16,11 @@
           <p class="text-gray">{{ destination[2] }}</p>
         </div>
         <div class="button-container">
-          <a class="button btn-tertiary" href="/contact">learn more</a>
+          <a class="button is-style-tertiary" href="/contact">learn more</a>
         </div>
       </div>
     </div>
     {% endfor %}
-  </div>
-</section>
-
-<section class="features">
-  <div class="container feature-boxes">
-    <div class="box box-odd">
-      <i class="fas fa-route fa-2x text-red"></i>
-      <h2>Adventurous</h2>
-      <p class="text-normal">
-        Embark on thrilling journeys to breathtaking destinations, where daring
-        adventures beckon at every turn.
-      </p>
-    </div>
-    <div class="box box-even">
-      <i class="fas fa-strikethrough fa-2x"></i>
-      <h2>Affordable</h2>
-      <p class="text-normal">
-        Satisfy your wanderlust without breaking the bank, with budget-friendly
-        travel options and unbeatable deals.
-      </p>
-    </div>
-    <div class="box box-odd">
-      <i class="fas fa-user-check fa-2x text-red"></i>
-      <h2>Experience</h2>
-      <p class="text-normal">
-        Create cherished memories amidst awe-inspiring landscapes, cultural
-        wonders, and unforgettable experiences.
-      </p>
-    </div>
   </div>
 </section>
 
