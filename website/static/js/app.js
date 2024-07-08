@@ -57,10 +57,23 @@ document.addEventListener("DOMContentLoaded", function () {
   logo?.addEventListener("mouseleave", mouseLeaveOnLogo);
   logo?.addEventListener("mouseenter", mouseEnterOnLogo);
 
-  flashMessages?.forEach((button) => {
-    button.addEventListener("click", function () {
-      const flashMessage = button.parentElement;
-      flashMessage.style.display = "none";
+  window.addEventListener("scroll", function () {
+    const navbar = document.querySelector(".navbar");
+    if (window.scrollY > 250) {
+      navbar.classList.add("bg-dark");
+    } else {
+      navbar.classList.remove("bg-dark");
+    }
+  });
+
+  flashMessages.forEach((button) => {
+    const timeout = setTimeout(() => {
+      button.parentElement.remove();
+    }, 6000);
+
+    button?.addEventListener("click", function () {
+      button.parentElement.remove();
+      clearTimeout(timeout);
     });
   });
 

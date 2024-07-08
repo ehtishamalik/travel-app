@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   height: 40rem;
-  margin: 14.4rem 0;
+  margin-bottom: 14.4rem;
 }
 
 .content-side-image.image-left {

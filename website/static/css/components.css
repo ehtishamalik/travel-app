@@ -64,6 +64,8 @@
 }
 
 .navbar {
+  position: fixed;
+  top: 0;
   z-index: 1;
   width: 100%;
   padding: 1rem;
@@ -89,11 +91,16 @@
 }
 
 .alert {
+  position: absolute;
+  right: 0;
+  top: 5rem;
+  max-width: 35rem;
   display: flex;
   justify-content: space-between;
+  gap: 2rem;
   align-items: center;
   margin: 1rem 3rem;
-  padding: 1rem;
+  padding: 2rem 1.5rem;
   border: 0.2rem solid;
   font-size: 1.6rem;
   border-radius: 1rem;

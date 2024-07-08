@@ -1,17 +1,13 @@
-.about {
-  padding: 8rem 0;
-}
-
-.about-heading {
+.about .about-heading {
   padding-bottom: 0.2em;
   border-bottom: 0.5rem solid var(--color-red);
 }
 
-.about-paragraph {
+.about .about-paragraph {
   text-align: justify;
 }
 
-.about-mission {
+.about .about-mission {
   padding: 2rem 6rem;
 }
 
