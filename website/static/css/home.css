@@ -16,6 +16,11 @@
   transform: translate(-50%, -50%);
 }
 
+.features {
+  padding: 0;
+  margin: 0 0 10rem 0;
+}
+
 .features .feature-boxes {
   display: flex;
 }
@@ -50,7 +55,6 @@
 .footer .social-media-links i {
   cursor: pointer;
   padding: 1rem;
-  transition: transform 0.5s ease;
 }
 
 .footer .social-media-links i:hover {

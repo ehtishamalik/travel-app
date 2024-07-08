@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: all 0.3s linear;
 }
 
 :root {
@@ -71,6 +72,11 @@ p {
   font-size: 1.2rem;
 }
 
+section {
+  margin-top: 5rem;
+  padding: 5rem 0;
+}
+
 .text-red {
   color: #e63946;
 }
@@ -111,10 +117,6 @@ p {
   text-transform: uppercase;
 }
 
-.mb-10 {
-  margin-bottom: 10rem;
-}
-
 .mb-5 {
   margin-bottom: 5rem;
 }
@@ -123,8 +125,10 @@ p {
   position: relative;
 }
 
-.pos-absolute {
-  position: absolute;
+.bg-inputs {
+  border-radius: 2rem;
+  padding: 2rem;
+  background-color: var(--color-light-gray);
 }
 
 .container {

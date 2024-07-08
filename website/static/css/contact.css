@@ -1,16 +1,15 @@
-.contact-form {
-  padding: 3rem;
-}
-
-.contact-form-wrapper {
+.contact-form .contact-form-wrapper {
   display: flex;
+  justify-content: space-between;
+  padding: 0 4rem;
 }
 
-.contact-form-wrapper .company-address {
+.contact-form-wrapper .company-address,
+.contact-form-wrapper .form {
   flex-basis: 45%;
 }
 
-.company-image img {
+.contact-form .company-image img {
   object-fit: cover;
   overflow: hidden;
   width: 100%;

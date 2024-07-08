@@ -57,10 +57,14 @@ document.addEventListener("DOMContentLoaded", function () {
   logo?.addEventListener("mouseleave", mouseLeaveOnLogo);
   logo?.addEventListener("mouseenter", mouseEnterOnLogo);
 
-  flashMessages?.forEach((button) => {
-    button.addEventListener("click", function () {
-      const flashMessage = button.parentElement;
-      flashMessage.style.display = "none";
+  flashMessages.forEach((button) => {
+    const timeout = setTimeout(() => {
+      button.parentElement.remove();
+    }, 6000);
+
+    button?.addEventListener("click", function () {
+      button.parentElement.remove();
+      clearTimeout(timeout);
     });
   });
 

@@ -23,22 +23,34 @@
   </head>
 
   <body>
-    <nav class="navbar {{ 'pos-absolute' if view == 'home' else 'bg-dark' }}">
+    <nav class="navbar {{ '' if view == 'home' else 'bg-dark' }}">
       <div class="container navbar__container">
         <a class="logo" href="/">TT</a>
         <ul class="nav-items">
+          {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="a-link text-white" href="/">HOME</a>
+            <a class="a-link text-white" href="/">home</a>
           </li>
           <li class="nav-item">
-            <a class="a-link text-white" href="/about">ABOUT</a>
+            <a class="a-link text-white" href="/share">share</a>
           </li>
           <li class="nav-item">
-            <a class="a-link text-white" href="/contact">CONTACT</a>
+            <a class="a-link text-white" href="/about">about</a>
           </li>
           <li class="nav-item">
-            <a class="a-link text-white" href="/logout">LOGOUT</a>
+            <a class="a-link text-white" href="/contact">contact</a>
           </li>
+          <li class="nav-item">
+            <a class="a-link text-white" href="/logout">logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="a-link text-white" href="/login">login</a>
+          </li>
+          <li class="nav-item">
+            <a class="a-link text-white" href="/register">register</a>
+          </li>
+          {% endif %}
         </ul>
       </div>
     </nav>
@@ -59,11 +71,17 @@
         <i class="fab fa-instagram fa-4x"></i>
         <i class="fab fa-twitter fa-4x"></i>
       </div>
-      <p>Malik Travels &copy; 2023, All Right Reserved</p>
+      <p>Malik Travels &copy; 2024, All Right Reserved</p>
     </footer>
     <script
       type="module"
       src="{{url_for('static', filename='js/app.js')}}"
     ></script>
+    {% if view == 'home' %}
+    <script
+      type="module"
+      src="{{url_for('static', filename='js/home.js')}}"
+    ></script>
+    {% endif %}
   </body>
 </html>

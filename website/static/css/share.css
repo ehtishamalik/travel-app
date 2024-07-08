@@ -1,0 +1,13 @@
+.upload .upload-form {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.upload .upload-form .image-input-label {
+  padding: 0.5em 0;
+  cursor: pointer;
+}
+
+.upload .upload-form input[type="file"] {
+  display: none;
+}
