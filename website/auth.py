@@ -72,7 +72,7 @@ def register():
                 database.add(new_user)
                 database.commit()
             except Exception as e:
-                database.rollback()  # Rollback the session in case of error
+                database.rollback()
                 if hasattr(e, "orig") and "UNIQUE constraint failed: user.email" in str(
                     e.orig
                 ):
@@ -81,9 +81,8 @@ def register():
                     flash("Could not register, please try again.", category=ERROR)
                 current_app.logger.error(f"[ERROR]\n{e}")
             else:
-                if current_user.check_admin():
+                if current_user.is_authenticated and current_user.check_admin():
                     flash("Account created successfully.", category=SUCCESS)
-                    # return redirect(url_for("auth.register"))
                 else:
                     flash(
                         "Account created successfully, please log in.", category=SUCCESS
