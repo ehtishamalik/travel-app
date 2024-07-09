@@ -32,13 +32,15 @@ def login():
                     return redirect(next_page)
                 return redirect(url_for("views.home"))
             else:
-                flash("Incorrect Email or Password", category=ERROR)
+                flash(
+                    "Login Unsuccessful. Please check email and password",
+                    category=ERROR,
+                )
         except Exception as e:
             flash("We could not log you in, please try again", category=ERROR)
             current_app.logger.error(f"[ERROR]\n{e}")
 
-    if request.args.get("next"):
-        session["next"] = request.args.get("next")
+    session["next"] = request.args.get("next")
     return render_template("login.html", view="login", user=current_user)
 
 
@@ -54,6 +56,7 @@ def register():
         username = request.form.get("username")
         email = request.form.get("email")
         password = request.form.get("password")
+        is_admin = request.form.get("admin", False)
 
         if len(username) > 40:
             flash("Username must be smaller than 40 characters.", category=ERROR)
@@ -62,7 +65,9 @@ def register():
         elif len(password) < 8:
             flash("Username must be longer than 6 characters.", category=ERROR)
         else:
-            new_user = User(username, email, generate_password_hash(password))
+            new_user = User(
+                username, email, generate_password_hash(password), bool(is_admin)
+            )
             try:
                 database.add(new_user)
                 database.commit()
@@ -76,6 +81,12 @@ def register():
                     flash("Could not register, please try again.", category=ERROR)
                 current_app.logger.error(f"[ERROR]\n{e}")
             else:
-                flash("Account created successfully, please log in.", category=SUCCESS)
-                return redirect(url_for("auth.login"))
+                if current_user.check_admin():
+                    flash("Account created successfully.", category=SUCCESS)
+                    # return redirect(url_for("auth.register"))
+                else:
+                    flash(
+                        "Account created successfully, please log in.", category=SUCCESS
+                    )
+                    return redirect(url_for("auth.login"))
     return render_template("register.html", view="register", user=current_user)

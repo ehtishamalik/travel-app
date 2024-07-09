@@ -1,7 +1,27 @@
-{% extends "index.html" %} {% block content %}
+{% extends "index.html" %} {% block content %} {% if destinations|length == 0 %}
+
+<section class="showcase-empty">
+  <div class="container">
+    <h1>Destinations</h1>
+    <div class="showcase-empty-wrapper">
+      <h2>Nothing to Show</h2>
+      <p>
+        It looks like there are no experiences shared yet. Be the first to share
+        your amazing travel stories and inspire others!
+      </p>
+      <div class="showcase-buttons">
+        <a href="/" class="button is-style-tertiary">Home</a>
+        <a href="/share" class="button is-style-tertiary">Share</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% else %}
 
 <section class="showcase">
   <div class="container">
+    <h1>Destinations</h1>
     {% for destination in destinations %} {% set row_class = 'image-right' if
     destination[0] % 2 == 1 else 'image-left' %}
     <div class="content-side-image {{ row_class }}">
@@ -23,5 +43,4 @@
     {% endfor %}
   </div>
 </section>
-
-{% endblock %}
+{% endif %} {% endblock %}

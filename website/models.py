@@ -1,4 +1,12 @@
-from sqlalchemy import create_engine, ForeignKey, Column, Integer, String, DateTime
+from sqlalchemy import (
+    create_engine,
+    ForeignKey,
+    Column,
+    Integer,
+    String,
+    DateTime,
+    Boolean,
+)
 from sqlalchemy.orm import sessionmaker, declarative_base
 from flask_login import UserMixin
 from sqlalchemy.sql import func
@@ -49,15 +57,20 @@ class User(Base, UserMixin):
     username = Column("username", String(40))
     email = Column("email", String(40), unique=True)
     password = Column("password", String(256))
+    is_admin = Column(Boolean, default=False)
     created_at = Column(DateTime(timezone=True), default=func.now())
 
-    def __init__(self, username, email, password):
+    def __init__(self, username: str, email: str, password: str, is_admin: bool):
         self.username = username
         self.email = email
         self.password = password
+        self.is_admin = is_admin
 
     def get_id(self):
         return str(self.uid)
+
+    def check_admin(self):
+        return self.is_admin
 
     def __repr__(self):
         return f"<<{self.uid}, {self.username}, {self.email}, {self.password}, {self.created_at}>>"

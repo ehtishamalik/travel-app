@@ -37,13 +37,6 @@
   font-weight: 500;
 }
 
-.form h1::after {
-  content: "";
-  display: block;
-  width: 98%;
-  border: 0.3rem solid var(--color-red);
-}
-
 .form label {
   display: block;
   font-size: 1.6rem;
@@ -78,12 +71,34 @@
   margin: 1em 0;
 }
 
-.form #submit-btn {
-  margin: 2rem auto 0;
+.form-group input[type="checkbox"] {
+  width: 1.4rem;
+  height: 1.4rem;
+  accent-color: var(--color-red);
+}
+
+.form-group input[type="checkbox"] + label {
+  font-size: 1.4rem;
+  text-transform: lowercase;
+  margin: 0;
+}
+
+.form-group input[type="checkbox"] + label::after {
+  display: none;
+}
+
+.form-group.flex-center {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
 }
 
 .form-group #char-count {
   position: absolute;
   top: 90%;
   left: 5%;
+}
+
+.contact-form .form .button {
+  margin: 0.5em auto;
 }

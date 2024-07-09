@@ -61,12 +61,25 @@
   transform: scale(1.2);
 }
 
+.showcase-empty .showcase-empty-wrapper {
+  width: 60%;
+  margin: 0 auto;
+  background-color: var(--color-light-gray);
+  border-radius: 2rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.showcase-empty-wrapper .showcase-buttons .button {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
 .scroll-me {
   height: 5vh;
   min-height: 25px;
   text-align: center;
   margin-top: 0.5rem;
-  margin-bottom: 3rem;
 }
 
 .scroll-me svg {

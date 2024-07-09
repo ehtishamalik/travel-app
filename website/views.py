@@ -85,3 +85,13 @@ def explore():
     return render_template(
         "explore.html", destinations=to_tuple, view="explore", user=current_user
     )
+
+
+@views.route("/admin", methods=["GET"])
+@login_required
+def admin():
+    if current_user.check_admin():
+        return "Admin page"
+    else:
+        flash("You are unauthorized to view this resource.", category=ERROR)
+        return redirect(url_for("views.home"))

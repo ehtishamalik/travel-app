@@ -1,8 +1,3 @@
-.about .about-heading {
-  padding-bottom: 0.2em;
-  border-bottom: 0.5rem solid var(--color-red);
-}
-
 .about .about-paragraph {
   text-align: justify;
 }

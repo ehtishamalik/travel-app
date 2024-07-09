@@ -29,26 +29,47 @@
         <ul class="nav-items">
           {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="a-link text-white" href="/">home</a>
+            <a class="a-link text-white" href="{{ url_for('views.home') }}"
+              >home</a
+            >
+          </li>
+          {% if user.check_admin() %}
+          <li class="nav-item">
+            <a class="a-link text-white" href="{{ url_for('views.admin') }}"
+              >Admin</a
+            >
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="a-link text-white" href="{{ url_for('views.share') }}"
+              >share</a
+            >
           </li>
           <li class="nav-item">
-            <a class="a-link text-white" href="/share">share</a>
+            <a class="a-link text-white" href="{{ url_for('views.about') }}"
+              >about</a
+            >
           </li>
           <li class="nav-item">
-            <a class="a-link text-white" href="/about">about</a>
+            <a class="a-link text-white" href="{{ url_for('views.contact') }}"
+              >contact</a
+            >
           </li>
           <li class="nav-item">
-            <a class="a-link text-white" href="/contact">contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="a-link text-white" href="/logout">logout</a>
+            <a class="a-link text-white" href="{{ url_for('auth.logout') }}"
+              >logout</a
+            >
           </li>
           {% else %}
           <li class="nav-item">
-            <a class="a-link text-white" href="/login">login</a>
+            <a class="a-link text-white" href="{{ url_for('auth.login') }}"
+              >login</a
+            >
           </li>
           <li class="nav-item">
-            <a class="a-link text-white" href="/register">register</a>
+            <a class="a-link text-white" href="{{ url_for('auth.register') }}"
+              >register</a
+            >
           </li>
           {% endif %}
         </ul>
