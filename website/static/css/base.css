@@ -71,8 +71,9 @@ h3 {
   font-size: 1.6rem;
 }
 
-p {
-  font-size: 1.2rem;
+p,
+span {
+  font-size: 1.4rem;
 }
 
 section {
@@ -129,10 +130,8 @@ section {
   position: relative;
 }
 
-.bg-inputs {
-  border-radius: 2rem;
-  padding: 2rem;
-  background-color: var(--color-light-gray);
+input[type="file"] {
+  display: none;
 }
 
 .container {

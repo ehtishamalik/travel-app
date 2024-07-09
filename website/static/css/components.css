@@ -1,6 +1,7 @@
+/* BUTTON */
 .button {
   display: inline-block;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 500;
   margin: 0.5em auto;
   color: var(--color-red);
@@ -41,6 +42,7 @@
   border-bottom: 0.1rem solid var(--color-red);
 }
 
+/* LINK */
 .a-link {
   display: inline-block;
   padding-bottom: 0.3rem;
@@ -51,18 +53,16 @@
   border-bottom: 1px solid #f4f4f4;
 }
 
+/* LOGO */
 .logo {
   font-size: 2.4rem;
+  min-width: 22rem;
+  text-align: center;
+  color: var(--color-white);
+  text-transform: uppercase;
 }
 
-.logo-transition {
-  font-size: 2.4rem;
-}
-
-.logo-transition:hover {
-  font-size: 3.6rem;
-}
-
+/* NAVBAR */
 .navbar {
   position: fixed;
   top: 0;
@@ -77,19 +77,13 @@
   align-items: center;
 }
 
-.navbar .logo {
-  min-width: 22rem;
-  text-align: center;
-  color: var(--color-white);
-  text-transform: uppercase;
-}
-
 .navbar .nav-items .nav-item {
   display: inline-block;
   padding: 0.3rem 1rem;
   text-transform: uppercase;
 }
 
+/* ALERT */
 .alert {
   position: fixed;
   right: 0;
@@ -128,4 +122,84 @@
 .alert-error {
   border-color: var(--color-error);
   background-color: var(--bg-error);
+}
+
+/* FOOTER */
+.footer {
+  background-color: var(--color-bg);
+  text-align: center;
+  padding: 1rem 2rem;
+  color: var(--color-white);
+}
+
+.footer .social-media-links {
+  padding: 1rem 0;
+}
+
+.footer .social-media-links i {
+  cursor: pointer;
+  padding: 1rem;
+}
+
+.footer .social-media-links i:hover {
+  transform: scale(1.2);
+}
+
+/* CONTENT-SIDE-IMAGES */
+.content-side-image {
+  display: flex;
+  justify-content: space-between;
+  height: 40rem;
+  margin-bottom: 14.4rem;
+}
+
+.content-side-image.image-left {
+  flex-direction: row;
+}
+
+.content-side-image.image-right {
+  flex-direction: row-reverse;
+}
+
+.content-side-image .img-container,
+.content-side-image .content-container {
+  flex-basis: 50%;
+}
+
+.content-side-image .content-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8rem;
+}
+
+.content-side-image .text-box__inner {
+  padding: 3rem;
+  height: 75%;
+}
+
+.content-side-image .img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2.4rem;
+}
+
+.content-side-image .button-box {
+  padding: 0 3rem;
+}
+
+/* SHOWCASE EMPTY */
+.showcase-empty .showcase-empty-wrapper {
+  width: 60%;
+  margin: 0 auto;
+  background-color: var(--color-light-gray);
+  border-radius: 2rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.showcase-empty-wrapper .showcase-buttons .button {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }

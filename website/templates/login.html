@@ -2,40 +2,42 @@
 
 <section class="register">
   <div class="container">
-    <form action="/login" method="post" class="form register-wrapper">
-      <h1>Login</h1>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          maxlength="40"
-          placeholder="🙌"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          minlength="8"
-          maxlength="40"
-          placeholder="🙌"
-          required
-        />
-      </div>
-      <button id="submit-btn" type="submit" class="button is-style-secondary">
-        Login
-      </button>
-      <p class="account-text">
-        New here?<a href="/register" class="button is-style-tertiary"
-          >Register</a
-        >
-      </p>
-    </form>
+    <div class="form-wrapper">
+      <form action="/login" method="post" class="form">
+        <h1>Login</h1>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            maxlength="40"
+            placeholder="🙌"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            minlength="8"
+            maxlength="40"
+            placeholder="🙌"
+            required
+          />
+        </div>
+        <button id="submit-btn" type="submit" class="button is-style-secondary">
+          Login
+        </button>
+        <p class="account-text">
+          New here?<a href="/register" class="button is-style-tertiary"
+            >Register</a
+          >
+        </p>
+      </form>
+    </div>
   </div>
 </section>
 {% endblock %}
