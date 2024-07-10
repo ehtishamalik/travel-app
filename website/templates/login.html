@@ -3,7 +3,7 @@
 <section class="register">
   <div class="container">
     <div class="form-wrapper">
-      <form action="/login" method="post" class="form">
+      <form action="{{ url_for('auth.login') }}" method="post" class="form">
         <h1>Login</h1>
         <div class="form-group">
           <label for="email">Email</label>

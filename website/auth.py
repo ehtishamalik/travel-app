@@ -19,8 +19,8 @@ auth = Blueprint("auth", __name__)
 @auth.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        email = request.form.get("email")
-        password = request.form.get("password")
+        email = request.form.get("email", "").strip()
+        password = request.form.get("password", "").strip()
 
         try:
             user = database.query(User).filter_by(email=email).first()
@@ -53,17 +53,22 @@ def logout():
 @auth.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        username = request.form.get("username")
-        email = request.form.get("email")
-        password = request.form.get("password")
+        username = request.form.get("username", "").strip()
+        email = request.form.get("email", "").strip()
+        password = request.form.get("password", "").strip()
+        confirm_password = request.form.get("confirm-password", "").strip()
         is_admin = request.form.get("admin", False)
 
-        if len(username) > 40:
+        if not username or not email or not password:
+            flash("Username, email and password are all required.", category=ERROR)
+        elif len(username) > 40:
             flash("Username must be smaller than 40 characters.", category=ERROR)
         elif len(username) < 8:
             flash("Username must be longer than 6 characters.", category=ERROR)
         elif len(password) < 8:
             flash("Username must be longer than 6 characters.", category=ERROR)
+        elif password != confirm_password:
+            flash("Passwords must match.", category=ERROR)
         else:
             new_user = User(
                 username, email, generate_password_hash(password), bool(is_admin)
@@ -79,7 +84,7 @@ def register():
                     flash("Email already exists.", category=ERROR)
                 else:
                     flash("Could not register, please try again.", category=ERROR)
-                current_app.logger.error(f"[ERROR]\n{e}")
+                    current_app.logger.error(f"[ERROR]\n{e}")
             else:
                 if current_user.is_authenticated and current_user.check_admin():
                     flash("Account created successfully.", category=SUCCESS)
