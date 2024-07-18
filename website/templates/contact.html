@@ -28,51 +28,61 @@
           />
         </div>
       </div>
-      <form action="/contact" class="form bg-inputs" method="post">
-        <h1>Contact US</h1>
-        <p class="text-gray">
-          Let us know your questions and concerns by filling out the contact
-          form below.
-        </p>
-        <div class="form-group">
-          <label for="username">Name</label>
-          <input
-            type="text"
-            id="username"
-            name="name"
-            maxlength="40"
-            placeholder="🙌"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            maxlength="40"
-            placeholder="🙌"
-            required
-          />
-        </div>
-        <div class="form-group pos-relative">
-          <label for="message">Message</label>
-          <textarea
-            name="message"
-            id="message"
-            cols="30"
-            rows="10"
-            maxlength="400"
-            placeholder="🙌"
-            required
-          ></textarea>
-          <p id="char-count">0 / 400</p>
-        </div>
-        <button id="submit-btn" type="submit" class="button is-style-secondary">
-          Submit
-        </button>
-      </form>
+      <div class="form-wrapper">
+        <form
+          action="{{ url_for('views.contact') }}"
+          class="form"
+          method="post"
+        >
+          <h1>Contact US</h1>
+          <p class="text-gray">
+            Let us know your questions and concerns by filling out the contact
+            form below.
+          </p>
+          <div class="form-group">
+            <label for="username">Name</label>
+            <input
+              type="text"
+              id="username"
+              name="name"
+              maxlength="40"
+              placeholder="🙌"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              maxlength="40"
+              placeholder="🙌"
+              required
+            />
+          </div>
+          <div class="form-group pos-relative">
+            <label for="message">Message</label>
+            <textarea
+              name="message"
+              id="message"
+              cols="30"
+              rows="10"
+              maxlength="400"
+              placeholder="🙌"
+              required
+            ></textarea>
+            <p id="char-count">0 / 400</p>
+          </div>
+          <button
+            id="submit-btn"
+            type="submit"
+            class="button is-style-secondary"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </section>

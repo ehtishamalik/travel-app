@@ -19,6 +19,12 @@
       rel="stylesheet"
       href="{{url_for('static', filename='css/index.css')}}"
     />
+    {% if view|include %}
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/' + view + '.css')}}"
+    />
+    {% endif %}
     <title>Adventures Awaits</title>
   </head>
 
@@ -29,26 +35,47 @@
         <ul class="nav-items">
           {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="a-link text-white" href="/">home</a>
+            <a class="a-link text-white" href="{{ url_for('views.home') }}"
+              >home</a
+            >
+          </li>
+          {% if user.check_admin() %}
+          <li class="nav-item">
+            <a class="a-link text-white" href="{{ url_for('views.admin') }}"
+              >Admin</a
+            >
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="a-link text-white" href="{{ url_for('views.share') }}"
+              >share</a
+            >
           </li>
           <li class="nav-item">
-            <a class="a-link text-white" href="/share">share</a>
+            <a class="a-link text-white" href="{{ url_for('views.about') }}"
+              >about</a
+            >
           </li>
           <li class="nav-item">
-            <a class="a-link text-white" href="/about">about</a>
+            <a class="a-link text-white" href="{{ url_for('views.contact') }}"
+              >contact</a
+            >
           </li>
           <li class="nav-item">
-            <a class="a-link text-white" href="/contact">contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="a-link text-white" href="/logout">logout</a>
+            <a class="a-link text-white" href="{{ url_for('auth.logout') }}"
+              >logout</a
+            >
           </li>
           {% else %}
           <li class="nav-item">
-            <a class="a-link text-white" href="/login">login</a>
+            <a class="a-link text-white" href="{{ url_for('auth.login') }}"
+              >login</a
+            >
           </li>
           <li class="nav-item">
-            <a class="a-link text-white" href="/register">register</a>
+            <a class="a-link text-white" href="{{ url_for('auth.register') }}"
+              >register</a
+            >
           </li>
           {% endif %}
         </ul>
@@ -59,9 +86,7 @@
     messages %} {% for category, message in messages %}
     <div class="alert alert-{{ category }}" role="alert">
       {{ message }}
-      <button type="button" class="close">
-        <span aria-hidden="true">&times;</span>
-      </button>
+      <button type="button" class="close">&times;</button>
     </div>
     {% endfor %} {% endif %} {% endwith %} {% block content %} {% endblock %}
 
@@ -71,7 +96,7 @@
         <i class="fab fa-instagram fa-4x"></i>
         <i class="fab fa-twitter fa-4x"></i>
       </div>
-      <p>Malik Travels &copy; 2024, All Right Reserved</p>
+      <p>Travel Tales &copy; 2024, All Right Reserved</p>
     </footer>
     <script
       type="module"

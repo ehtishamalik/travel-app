@@ -10,8 +10,14 @@ from flask import (
 from flask_login import login_required, current_user
 from os import path
 from .models import database, Destination, Messages
-from .helpers import generate_unique_key, save_compressed_image, sqlalchemy_to_tuple
+from .helpers import (
+    generate_unique_key,
+    save_compressed_image,
+    sqlalchemy_to_tuple,
+    valid_image,
+)
 from .constants import SUCCESS, ERROR
+from urllib.parse import urlparse
 
 views = Blueprint("views", __name__)
 IMAGES_FOLDER = path.join("website", "static", "images")
@@ -30,9 +36,9 @@ def about():
 @views.route("/contact", methods=["GET", "POST"])
 def contact():
     if request.method == "POST":
-        name = request.form.get("name")
-        email = request.form.get("email")
-        message = request.form.get("message")
+        name = request.form.get("name", "").strip()
+        email = request.form.get("email", "").strip()
+        message = request.form.get("message", "").strip()
 
         new_message = Messages(name, email, message)
         try:
@@ -52,23 +58,45 @@ def contact():
 @login_required
 def share():
     if request.method == "POST":
-        image = request.files.get("image")
-        name = request.form.get("desname")
-        description = request.form.get("description")
-        unique_key = generate_unique_key()
-        image_name = f"{unique_key}.jpeg"
-        try:
-            destination = Destination(name, description, image_name, current_user.uid)
-            database.add(destination)
-            database.commit()
-        except Exception as e:
-            database.rollback()  # Rollback the session in case of error
-            flash("Could not add your destination, please try again", category=ERROR)
-            current_app.logger.error(f"[ERROR]\n{e}\n\n")
+        name = request.form.get("desname", "").strip()
+        description = request.form.get("description", "").strip()
+        link = request.form.get("link", "").strip()
+        image = request.files.get("image", None)
+        is_valid = urlparse(link)
+
+        if not name or not description or not image or not link:
+            flash(
+                "Destination Name, Description and Image are all required.",
+                category=ERROR,
+            )
+        elif not image.content_type.startswith("image") or not valid_image(
+            image.filename
+        ):
+            flash(
+                "Invalid file extension, please upload 'png', 'jpg', 'jpeg'",
+                category=ERROR,
+            )
+        elif not is_valid.scheme or not is_valid.netloc:
+            flash("Invalid URL, please add a valid URL.", category=ERROR)
         else:
-            save_compressed_image(path.join(IMAGES_FOLDER, image_name), image)
-            flash("Destination added successfully.", category=SUCCESS)
-            return redirect(url_for("views.explore"))
+            unique_key = generate_unique_key()
+            image_name = f"{unique_key}.jpeg"
+            try:
+                destination = Destination(
+                    name, description, link, image_name, current_user.uid
+                )
+                database.add(destination)
+                database.commit()
+            except Exception as e:
+                database.rollback()  # Rollback the session in case of error
+                flash(
+                    "Could not add your destination, please try again", category=ERROR
+                )
+                current_app.logger.error(f"[ERROR]\n{e}\n\n")
+            else:
+                save_compressed_image(path.join(IMAGES_FOLDER, image_name), image)
+                flash("Destination added successfully.", category=SUCCESS)
+                return redirect(url_for("views.explore"))
     return render_template("share.html", view="share", user=current_user)
 
 
@@ -79,9 +107,22 @@ def explore():
         destinations = database.query(Destination).all()
         to_tuple = [sqlalchemy_to_tuple(destination) for destination in destinations]
     except Exception as e:
-        flash("Something went wrong, please reload the page", category="error")
+        flash(
+            "Something went wrong, we could not load all the places. Please reload the page",
+            category="error",
+        )
         current_app.logger.error(f"[ERROR]\n{e}\n\n")
         to_tuple = []
     return render_template(
         "explore.html", destinations=to_tuple, view="explore", user=current_user
     )
+
+
+@views.route("/admin", methods=["GET"])
+@login_required
+def admin():
+    if current_user.check_admin():
+        return "Admin page"
+    else:
+        flash("You are unauthorized to view this resource.", category=ERROR)
+        return redirect(url_for("views.home"))

@@ -1,9 +1,4 @@
 @import "./base.css";
 @import "./components.css";
-@import "./home.css";
-@import "./about.css";
-@import "./contact.css";
-@import "./share.css";
-@import "./register.css";
-@import "./content-side-image.css";
+@import "./form.css";
 @import "./media-queries.css";

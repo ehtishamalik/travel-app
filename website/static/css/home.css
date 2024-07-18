@@ -41,32 +41,11 @@
   background-color: var(--color-red);
 }
 
-.footer {
-  background-color: var(--color-bg);
-  text-align: center;
-  padding: 1rem 2rem;
-  color: var(--color-white);
-}
-
-.footer .social-media-links {
-  padding: 1rem 0;
-}
-
-.footer .social-media-links i {
-  cursor: pointer;
-  padding: 1rem;
-}
-
-.footer .social-media-links i:hover {
-  transform: scale(1.2);
-}
-
 .scroll-me {
   height: 5vh;
   min-height: 25px;
   text-align: center;
   margin-top: 0.5rem;
-  margin-bottom: 3rem;
 }
 
 .scroll-me svg {
