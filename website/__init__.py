@@ -9,6 +9,7 @@ from .models import database, User
 def create_app():
     app = Flask(__name__)
     app.config["SECRET_KEY"] = os.urandom(24).hex()
+    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///database/database.db"
 
     login_manager = LoginManager()
     login_manager.login_view = "auth.login"
