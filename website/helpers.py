@@ -27,5 +27,10 @@ def sqlalchemy_to_tuple(instance):
         for column in inspect(instance).mapper.column_attrs
     )
 
+
 def valid_image(filename: str):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ['png', 'jpg', 'jpeg']
+    return "." in filename and filename.rsplit(".", 1)[1].lower() in [
+        "png",
+        "jpg",
+        "jpeg",
+    ]

@@ -35,14 +35,28 @@
           ></textarea>
           <p id="char-count">0 / 400</p>
         </div>
-        <label for="image-input" class="image-input-label">Choose a file</label>
-        <input
-          id="image-input"
-          type="file"
-          accept=".png,.jpg,.jpeg"
-          name="image"
-          required
-        />
+        <div class="form-group">
+          <label for="desname">URL to Visit</label>
+          <input
+            type="text"
+            name="link"
+            id="url_link"
+            placeholder="🙌"
+            required
+          />
+        </div>
+        <div class="form-group has-input-image">
+          <label for="image-input" class="image-input-label"
+            >Choose a file</label
+          >
+          <input
+            id="image-input"
+            type="file"
+            accept=".png,.jpg,.jpeg"
+            name="image"
+            required
+          />
+        </div>
         <button id="submit-btn" type="submit" class="button is-style-secondary">
           Submit
         </button>

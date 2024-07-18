@@ -130,10 +130,6 @@ section {
   position: relative;
 }
 
-input[type="file"] {
-  display: none;
-}
-
 .container {
   max-width: 144rem;
   padding: 0 4rem;

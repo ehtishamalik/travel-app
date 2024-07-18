@@ -75,3 +75,16 @@
   resize: none;
   font-family: inherit;
 }
+
+input[type="file"] {
+  opacity: 0;
+}
+
+.image-input-label {
+  cursor: pointer;
+}
+
+.form-group.has-input-image {
+  display: inline-flex;
+  flex-direction: column;
+}

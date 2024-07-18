@@ -17,7 +17,7 @@ def create_app():
     app.register_blueprint(views, url_prefix="/")
     app.register_blueprint(auth, url_prefix="/")
 
-    @app.template_filter('include')
+    @app.template_filter("include")
     def include(view):
         return view in ["home", "about", "contact"]
 

@@ -6,6 +6,7 @@ from sqlalchemy import (
     String,
     DateTime,
     Boolean,
+    Text,
 )
 from sqlalchemy.orm import sessionmaker, declarative_base
 from flask_login import UserMixin
@@ -37,17 +38,19 @@ class Destination(Base):
     uid = Column("uid", Integer, primary_key=True)
     name = Column("name", String(30))
     description = Column("description", String(400))
-    image = Column("image", String(41))
+    link = Column("image", Text)
+    image = Column("link", String(41))
     owner = Column(ForeignKey("user.uid"))
 
-    def __init__(self, name, description, image, owner):
+    def __init__(self, name, description, link, image, owner):
         self.name = name
         self.description = description
+        self.link = link
         self.image = image
         self.owner = owner
 
     def __repr__(self):
-        return f"<<{self.uid}, {self.name}, {self.description}, {self.image}>>"
+        return f"<<{self.uid}, {self.name}, {self.description}, {self.link}, {self.image}, {self.owner}>>"
 
 
 class User(Base, UserMixin):

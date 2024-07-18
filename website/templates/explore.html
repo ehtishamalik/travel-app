@@ -27,7 +27,7 @@
     <div class="content-side-image {{ row_class }}">
       <div class="img-container">
         <img
-          src="{{url_for('static', filename='images/' + destination[3]) }}"
+          src="{{url_for('static', filename='images/' + destination[4]) }}"
         />
       </div>
       <div class="content-container">
@@ -36,7 +36,9 @@
           <p class="text-gray">{{ destination[2] }}</p>
         </div>
         <div class="button-container">
-          <a class="button is-style-tertiary" href="/contact">learn more</a>
+          <a class="button is-style-tertiary" href="{{ destination[3] }}"
+            >learn more</a
+          >
         </div>
       </div>
     </div>
