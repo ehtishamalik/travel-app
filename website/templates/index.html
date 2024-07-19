@@ -25,7 +25,7 @@
       href="{{url_for('static', filename='css/' + view + '.css')}}"
     />
     {% endif %}
-    <title>Adventures Awaits</title>
+    <title>{% block title %}Travel Tales{% endblock %}</title>
   </head>
 
   <body>
@@ -75,6 +75,16 @@
           <li class="nav-item">
             <a class="a-link text-white" href="{{ url_for('auth.register') }}"
               >register</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="a-link text-white" href="{{ url_for('views.about') }}"
+              >about</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="a-link text-white" href="{{ url_for('views.contact') }}"
+              >contact</a
             >
           </li>
           {% endif %}
