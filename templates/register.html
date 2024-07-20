@@ -58,7 +58,7 @@ Travel Tales{% endblock %}
             required
           />
         </div>
-        {% if user.is_authenticated and user.check_admin() %}
+        {% if user.is_authenticated and user.is_admin %}
         <div class="form-group flex-center">
           <input type="checkbox" id="create-admin" name="admin" />
           <label for="create-admin">Create Admin</label>

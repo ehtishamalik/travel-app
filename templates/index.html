@@ -39,7 +39,7 @@
               >home</a
             >
           </li>
-          {% if user.check_admin() %}
+          {% if user.is_admin %}
           <li class="nav-item">
             <a class="a-link text-white" href="{{ url_for('views.admin') }}"
               >Admin</a

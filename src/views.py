@@ -123,7 +123,7 @@ def explore():
 @views.route("/admin", methods=["GET"])
 @login_required
 def admin():
-    if current_user.check_admin():
+    if current_user.is_admin:
         return "Admin page"
     else:
         flash("You are unauthorized to view this resource.", category=ERROR)

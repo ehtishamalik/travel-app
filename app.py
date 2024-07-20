@@ -6,6 +6,7 @@ import logging
 import os
 from src.models import db
 
+
 def create_app():
     app = Flask(__name__)
     app.config["SECRET_KEY"] = os.urandom(24).hex()
@@ -42,10 +43,11 @@ def create_app():
 
     # Load current user
     from src.models import User
+
     @login_manager.user_loader
     def load_user(id):
         return db.session.query(User).filter_by(uid=int(id)).first()
-    
+
     return app
 
 

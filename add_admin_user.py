@@ -17,15 +17,16 @@ session = Session()
 # Function to add admin user
 def add_admin_user():
     admin_user = User(
-        username='admin',
-        email='admin@tt.com',
-        password=generate_password_hash('Eht!sham'),
-        is_admin=True
+        username="admin",
+        email="admin@tt.com",
+        password=generate_password_hash("Eht!sham"),
+        is_admin=True,
     )
-    
+
     session.add(admin_user)
     session.commit()
     print("Admin user added successfully.")
+
 
 if __name__ == "__main__":
     try:

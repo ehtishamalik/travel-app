@@ -72,8 +72,5 @@ class User(db.Model, UserMixin):
     def get_id(self):
         return str(self.uid)
 
-    def check_admin(self):
-        return self.is_admin
-
     def __repr__(self):
         return f"<<{self.uid}, {self.username}, {self.email}, {self.password}, {self.created_at}>>"
