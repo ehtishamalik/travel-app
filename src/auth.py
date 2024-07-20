@@ -10,9 +10,9 @@ from flask import (
 )
 from flask_login import login_user, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from constants import SUCCESS, ERROR
-from models import User
-from app import db
+from src.constants import SUCCESS, ERROR
+from src.models import User
+from src.models import db
 
 auth = Blueprint("auth", __name__)
 

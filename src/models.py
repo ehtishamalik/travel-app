@@ -1,3 +1,4 @@
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import (
     ForeignKey,
     Column,
@@ -9,7 +10,9 @@ from sqlalchemy import (
 )
 from flask_login import UserMixin
 from sqlalchemy.sql import func
-from app import db
+
+
+db = SQLAlchemy()
 
 
 class Messages(db.Model):
@@ -74,4 +77,3 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f"<<{self.uid}, {self.username}, {self.email}, {self.password}, {self.created_at}>>"
-

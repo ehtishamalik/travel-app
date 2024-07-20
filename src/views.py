@@ -10,10 +10,10 @@ from flask import (
 from flask_login import login_required, current_user
 from urllib.parse import urlparse
 from os import path
-from models import Destination, Messages
-from constants import SUCCESS, ERROR
-from app import db
-from helpers import (
+from src.models import Destination, Messages
+from src.constants import SUCCESS, ERROR
+from src.models import db
+from src.helpers import (
     generate_unique_key,
     save_compressed_image,
     sqlalchemy_to_tuple,
@@ -22,7 +22,7 @@ from helpers import (
 
 
 views = Blueprint("views", __name__)
-IMAGES_FOLDER = path.join("website", "static", "images")
+IMAGES_FOLDER = path.join("static", "images")
 
 
 @views.route("/", methods=["GET"])
