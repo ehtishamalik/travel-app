@@ -10,8 +10,9 @@ from flask import (
 )
 from flask_login import login_user, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from .models import database, User
-from .constants import SUCCESS, ERROR
+from constants import SUCCESS, ERROR
+from models import User
+from app import db
 
 auth = Blueprint("auth", __name__)
 
@@ -23,7 +24,7 @@ def login():
         password = request.form.get("password", "").strip()
 
         try:
-            user = database.query(User).filter_by(email=email).first()
+            user = db.session.query(User).filter_by(email=email).first()
             if user and check_password_hash(user.password, password):
                 login_user(user, remember=True)
                 next_page = session.get("next", None)
@@ -74,10 +75,10 @@ def register():
                 username, email, generate_password_hash(password), bool(is_admin)
             )
             try:
-                database.add(new_user)
-                database.commit()
+                db.session.add(new_user)
+                db.session.commit()
             except Exception as e:
-                database.rollback()
+                db.session.rollback()
                 if hasattr(e, "orig") and "UNIQUE constraint failed: user.email" in str(
                     e.orig
                 ):

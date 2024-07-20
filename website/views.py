@@ -8,16 +8,18 @@ from flask import (
     current_app,
 )
 from flask_login import login_required, current_user
+from urllib.parse import urlparse
 from os import path
-from .models import database, Destination, Messages
-from .helpers import (
+from models import Destination, Messages
+from constants import SUCCESS, ERROR
+from app import db
+from helpers import (
     generate_unique_key,
     save_compressed_image,
     sqlalchemy_to_tuple,
     valid_image,
 )
-from .constants import SUCCESS, ERROR
-from urllib.parse import urlparse
+
 
 views = Blueprint("views", __name__)
 IMAGES_FOLDER = path.join("website", "static", "images")
@@ -42,10 +44,10 @@ def contact():
 
         new_message = Messages(name, email, message)
         try:
-            database.add(new_message)
-            database.commit()
+            db.session.add(new_message)
+            db.session.commit()
         except Exception as e:
-            database.rollback()  # Rollback the session in case of error
+            db.session.rollback()
             flash("Something went wrong, please try again.", category=ERROR)
             current_app.logger.error(f"[ERROR]\n{e}\n\n")
         else:
@@ -85,10 +87,10 @@ def share():
                 destination = Destination(
                     name, description, link, image_name, current_user.uid
                 )
-                database.add(destination)
-                database.commit()
+                db.session.add(destination)
+                db.session.commit()
             except Exception as e:
-                database.rollback()  # Rollback the session in case of error
+                db.session.rollback()
                 flash(
                     "Could not add your destination, please try again", category=ERROR
                 )
@@ -104,7 +106,7 @@ def share():
 @login_required
 def explore():
     try:
-        destinations = database.query(Destination).all()
+        destinations = db.session.query(Destination).all()
         to_tuple = [sqlalchemy_to_tuple(destination) for destination in destinations]
     except Exception as e:
         flash(
