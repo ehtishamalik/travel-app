@@ -1,5 +1,5 @@
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import (
-    create_engine,
     ForeignKey,
     Column,
     Integer,
@@ -8,14 +8,14 @@ from sqlalchemy import (
     Boolean,
     Text,
 )
-from sqlalchemy.orm import sessionmaker, declarative_base
 from flask_login import UserMixin
 from sqlalchemy.sql import func
 
-Base = declarative_base()
+
+db = SQLAlchemy()
 
 
-class Messages(Base):
+class Messages(db.Model):
     __tablename__ = "message"
 
     uid = Column("uid", Integer, primary_key=True)
@@ -32,7 +32,7 @@ class Messages(Base):
         return f"<<{self.uid}, {self.username}, {self.email}, {self.message}>>"
 
 
-class Destination(Base):
+class Destination(db.Model):
     __tablename__ = "destination"
 
     uid = Column("uid", Integer, primary_key=True)
@@ -53,7 +53,7 @@ class Destination(Base):
         return f"<<{self.uid}, {self.name}, {self.description}, {self.link}, {self.image}, {self.owner}>>"
 
 
-class User(Base, UserMixin):
+class User(db.Model, UserMixin):
     __tablename__ = "user"
 
     uid = Column("uid", Integer, primary_key=True)
@@ -72,15 +72,5 @@ class User(Base, UserMixin):
     def get_id(self):
         return str(self.uid)
 
-    def check_admin(self):
-        return self.is_admin
-
     def __repr__(self):
         return f"<<{self.uid}, {self.username}, {self.email}, {self.password}, {self.created_at}>>"
-
-
-engine = create_engine("sqlite:///database/database.db", echo=False)
-Base.metadata.create_all(bind=engine)
-
-Session = sessionmaker(bind=engine)
-database = Session()

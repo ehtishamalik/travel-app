@@ -4,8 +4,9 @@ website/__pycache__
 error.log
 error.log.1
 
-# Ignore database
-database/database.db
+# Ignore database files
+instance
+migrations
 
 # Ignore images in static folder
 website/static/images/*

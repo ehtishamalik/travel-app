@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "flask --app app run",
     "demo": "flask --app app run --debug",
-    "format": "black ./website",
+    "format": "black . --exclude '__pycache__|.venv|instance|migrations'",
     "host": "ssh -p 443 -o ServerAliveInterval=30 -R0:127.0.0.1:5000 a.pinggy.io",
     "pip:install": "pip install -r requirements.txt",
     "pip:freeze": "pip freeze > requirements.txt"

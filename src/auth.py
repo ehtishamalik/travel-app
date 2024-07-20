@@ -10,20 +10,25 @@ from flask import (
 )
 from flask_login import login_user, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from .models import database, User
-from .constants import SUCCESS, ERROR
+from src.constants import SUCCESS, ERROR, MESSAGE
+from src.models import User
+from src.models import db
 
 auth = Blueprint("auth", __name__)
 
 
 @auth.route("/login", methods=["GET", "POST"])
 def login():
+    if current_user.is_authenticated:
+        flash("You are already logged in.", category=MESSAGE)
+        return redirect(url_for("views.home"))
+
     if request.method == "POST":
         email = request.form.get("email", "").strip()
         password = request.form.get("password", "").strip()
 
         try:
-            user = database.query(User).filter_by(email=email).first()
+            user = db.session.query(User).filter_by(email=email).first()
             if user and check_password_hash(user.password, password):
                 login_user(user, remember=True)
                 next_page = session.get("next", None)
@@ -52,6 +57,10 @@ def logout():
 
 @auth.route("/register", methods=["GET", "POST"])
 def register():
+    if current_user.is_authenticated and not current_user.is_admin:
+        flash("You are already logged in.", category=MESSAGE)
+        return redirect(url_for("views.home"))
+
     if request.method == "POST":
         username = request.form.get("username", "").strip()
         email = request.form.get("email", "").strip()
@@ -74,10 +83,10 @@ def register():
                 username, email, generate_password_hash(password), bool(is_admin)
             )
             try:
-                database.add(new_user)
-                database.commit()
+                db.session.add(new_user)
+                db.session.commit()
             except Exception as e:
-                database.rollback()
+                db.session.rollback()
                 if hasattr(e, "orig") and "UNIQUE constraint failed: user.email" in str(
                     e.orig
                 ):
@@ -86,7 +95,7 @@ def register():
                     flash("Could not register, please try again.", category=ERROR)
                     current_app.logger.error(f"[ERROR]\n{e}")
             else:
-                if current_user.is_authenticated and current_user.check_admin():
+                if current_user.is_authenticated and current_user.is_admin:
                     flash("Account created successfully.", category=SUCCESS)
                 else:
                     flash(
