@@ -4,7 +4,7 @@ from flask_migrate import Migrate
 from flask import Flask
 import logging
 import os
-from src.models import db
+from src import db
 
 
 def create_app():
