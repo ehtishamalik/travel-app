@@ -123,9 +123,7 @@ def explore():
 @login_required
 def admin():
     if current_user.is_admin:
-        return render_template(
-        "admin.html", view="admin", user=current_user
-    )
+        return render_template("admin.html", view="admin", user=current_user)
     else:
         flash("You are unauthorized to view this resource.", category=ERROR)
         return redirect(url_for("views.home"))
