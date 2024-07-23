@@ -1,51 +1,59 @@
 document.addEventListener("DOMContentLoaded", function () {
   let logoEnterActive = false;
   let logoLeaveActive = false;
-  const logoTime = 60;
+  const logoActiveMaxWidth = 992;
   const name = "Travel Tales";
 
   const mouseEnterOnLogo = () => {
+    if (window.innerWidth < logoActiveMaxWidth) return;
     if (logoEnterActive || logoLeaveActive) return;
 
     logoEnterActive = true;
     logo.textContent = "T";
 
-    function typeEffect(index) {
+    let index = 1;
+    function typeEffect() {
       if (index < name.length) {
         logo.textContent += name[index];
-        setTimeout(() => {
-          typeEffect(index + 1);
-        }, logoTime);
+        index++;
+        requestAnimationFrame(typeEffect);
       } else {
         logoEnterActive = false;
       }
     }
-    typeEffect(1);
+
+    typeEffect();
   };
 
   const mouseLeaveOnLogo = () => {
+    if (window.innerWidth < logoActiveMaxWidth) return;
     if (logoLeaveActive) return;
     if (logoEnterActive) {
       setTimeout(mouseLeaveOnLogo, 1000);
-    } else {
-      logoLeaveActive = true;
-      function typeEffect(index) {
-        if (index > 2) {
-          logo.textContent = logo.textContent.slice(0, -1);
-          setTimeout(() => {
-            typeEffect(index - 1);
-          }, logoTime);
-        } else {
-          logo.textContent = "TT";
-          logoLeaveActive = false;
-        }
-      }
-      typeEffect(logo.textContent.length);
+      return;
     }
+
+    logoLeaveActive = true;
+
+    let index = logo.textContent.length;
+
+    function typeEffect() {
+      if (index > 2) {
+        logo.textContent = logo.textContent.slice(0, -1);
+        index--;
+        requestAnimationFrame(typeEffect);
+      } else {
+        logo.textContent = "TT";
+        logoLeaveActive = false;
+      }
+    }
+
+    typeEffect();
   };
 
   const flashMessages = document.querySelectorAll(".alert button.close");
   const logo = document.querySelector(".navbar .logo");
+  const menu = document.querySelector("#menu-button");
   const textArea = document.getElementById("message");
   const charCount = document.getElementById("char-count");
   const registerButton = document.getElementById("register-btn");
@@ -56,6 +64,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   logo?.addEventListener("mouseleave", mouseLeaveOnLogo);
   logo?.addEventListener("mouseenter", mouseEnterOnLogo);
+
+  menu?.addEventListener("click", () => {
+    menu.parentElement.classList.toggle("open");
+  });
 
   flashMessages.forEach((button) => {
     const timeout = setTimeout(() => {

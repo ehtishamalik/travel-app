@@ -1,11 +1,13 @@
 .header {
+  position: relative;
   height: 95vh;
+  min-height: 50rem;
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)),
-    url("../assets/header-image.jpeg");
+    url("/static/assets/header-image.jpeg");
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
-  position: relative;
+  transition: none;
 }
 
 .header-content {

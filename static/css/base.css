@@ -20,6 +20,12 @@
   --bg-success: #cdffcd;
   --color-message: #0000ff;
   --bg-message: #cdcdff;
+  --navbar-height: 5rem;
+  --width-xs: 57.6rem;
+  --width-sm: 76.8rem;
+  --width-md: 99.2rem;
+  --width-lg: 120rem;
+  --width-xl: 144rem;
 }
 
 html {
@@ -131,7 +137,7 @@ section {
 }
 
 .container {
-  max-width: 144rem;
+  max-width: var(--width-xl);
   padding: 0 4rem;
   margin: 0 auto;
 }

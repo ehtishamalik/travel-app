@@ -31,64 +31,83 @@
   <body>
     <nav class="navbar {{ '' if view == 'home' else 'bg-dark' }}">
       <div class="container navbar__container">
-        <a class="logo" href="/">TT</a>
-        <ul class="nav-items">
-          {% if user.is_authenticated %}
-          <li class="nav-item">
-            <a class="a-link text-white" href="{{ url_for('views.home') }}"
-              >home</a
-            >
-          </li>
-          {% if user.is_admin %}
-          <li class="nav-item">
-            <a class="a-link text-white" href="{{ url_for('views.admin') }}"
-              >Admin</a
-            >
-          </li>
+        <div class="nav-logo">
+          <a class="logo" href="/">TT</a>
+        </div>
+        <div class="nav-menus">
+          {% if not user.is_authenticated %}
+          <ul class="nav-items">
+            <li class="nav-item">
+              <a class="a-link text-white" href="{{ url_for('auth.login') }}"
+                >login</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="a-link text-white" href="{{ url_for('auth.register') }}"
+                >register</a
+              >
+            </li>
+          </ul>
           {% endif %}
-          <li class="nav-item">
-            <a class="a-link text-white" href="{{ url_for('views.share') }}"
-              >share</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="a-link text-white" href="{{ url_for('views.about') }}"
-              >about</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="a-link text-white" href="{{ url_for('views.contact') }}"
-              >contact</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="a-link text-white" href="{{ url_for('auth.logout') }}"
-              >logout</a
-            >
-          </li>
-          {% else %}
-          <li class="nav-item">
-            <a class="a-link text-white" href="{{ url_for('auth.login') }}"
-              >login</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="a-link text-white" href="{{ url_for('auth.register') }}"
-              >register</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="a-link text-white" href="{{ url_for('views.about') }}"
-              >about</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="a-link text-white" href="{{ url_for('views.contact') }}"
-              >contact</a
-            >
-          </li>
-          {% endif %}
-        </ul>
+          <div class="nav-menu">
+            <button type="button" id="menu-button"></button>
+            <span class="layer-1"></span>
+            <span class="layer-2"></span>
+            <span class="layer-3"></span>
+            <div class="nav-menu-container">
+              <ul class="nav-menu-items">
+                {% if user.is_authenticated %}
+                <li class="nav-menu-item">
+                  <a
+                    class="a-link text-white"
+                    href="{{ url_for('views.home') }}"
+                    >home</a
+                  >
+                </li>
+                {% if user.is_admin %}
+                <li class="nav-menu-item">
+                  <a
+                    class="a-link text-white"
+                    href="{{ url_for('views.admin') }}"
+                    >Admin</a
+                  >
+                </li>
+                {% endif %}
+                <li class="nav-menu-item">
+                  <a
+                    class="a-link text-white"
+                    href="{{ url_for('views.share') }}"
+                    >share</a
+                  >
+                </li>
+                {% endif %}
+                <li class="nav-menu-item">
+                  <a
+                    class="a-link text-white"
+                    href="{{ url_for('views.about') }}"
+                    >about us</a
+                  >
+                </li>
+                <li class="nav-menu-item">
+                  <a
+                    class="a-link text-white"
+                    href="{{ url_for('views.contact') }}"
+                    >contact us</a
+                  >
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-menu-item logout">
+                  <a
+                    class="a-link text-white"
+                    href="{{ url_for('auth.logout') }}"
+                    >logout</a
+                  >
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </nav>
 
@@ -102,9 +121,45 @@
 
     <footer class="footer">
       <div class="social-media-links">
-        <i class="fab fa-facebook fa-4x"></i>
-        <i class="fab fa-instagram fa-4x"></i>
-        <i class="fab fa-twitter fa-4x"></i>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+          <path
+            d="M25,3C12.85,3,3,12.85,3,25c0,11.03,8.125,20.137,18.712,21.728V30.831h-5.443v-5.783h5.443v-3.848 c0-6.371,3.104-9.168,8.399-9.168c2.536,0,3.877,0.188,4.512,0.274v5.048h-3.612c-2.248,0-3.033,2.131-3.033,4.533v3.161h6.588 l-0.894,5.783h-5.694v15.944C38.716,45.318,47,36.137,47,25C47,12.85,37.15,3,25,3z"
+          />
+        </svg>
+
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+          <path
+            d="M 16 3 C 8.83 3 3 8.83 3 16 L 3 34 C 3 41.17 8.83 47 16 47 L 34 47 C 41.17 47 47 41.17 47 34 L 47 16 C 47 8.83 41.17 3 34 3 L 16 3 z M 37 11 C 38.1 11 39 11.9 39 13 C 39 14.1 38.1 15 37 15 C 35.9 15 35 14.1 35 13 C 35 11.9 35.9 11 37 11 z M 25 14 C 31.07 14 36 18.93 36 25 C 36 31.07 31.07 36 25 36 C 18.93 36 14 31.07 14 25 C 14 18.93 18.93 14 25 14 z M 25 16 C 20.04 16 16 20.04 16 25 C 16 29.96 20.04 34 25 34 C 29.96 34 34 29.96 34 25 C 34 20.04 29.96 16 25 16 z"
+          />
+        </svg>
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0,0,256,256"
+        >
+          <g
+            fill-rule="nonzero"
+            stroke="none"
+            stroke-width="1"
+            stroke-linecap="butt"
+            stroke-linejoin="miter"
+            stroke-miterlimit="10"
+            stroke-dasharray=""
+            stroke-dashoffset="0"
+            font-family="none"
+            font-weight="none"
+            font-size="none"
+            text-anchor="none"
+            style="mix-blend-mode: normal"
+          >
+            <g transform="scale(5.12,5.12)">
+              <path
+                d="M50.0625,10.4375c-1.84766,0.82031 -3.82812,1.37109 -5.91016,1.62109c2.125,-1.27344 3.75781,-3.28906 4.52344,-5.6875c-1.98437,1.17578 -4.19141,2.03125 -6.53125,2.49219c-1.875,-2 -4.54687,-3.24609 -7.50391,-3.24609c-5.67969,0 -10.28516,4.60156 -10.28516,10.28125c0,0.80469 0.09375,1.58984 0.26953,2.34375c-8.54687,-0.42969 -16.12109,-4.52344 -21.19531,-10.74609c-0.88672,1.52344 -1.39062,3.28906 -1.39062,5.17187c0,3.56641 1.8125,6.71484 4.57422,8.5625c-1.6875,-0.05469 -3.27344,-0.51953 -4.66016,-1.28906c0,0.04297 0,0.08594 0,0.12891c0,4.98438 3.54688,9.13672 8.24609,10.08594c-0.85937,0.23438 -1.76953,0.35938 -2.70703,0.35938c-0.66406,0 -1.30859,-0.0625 -1.9375,-0.1875c1.3125,4.08203 5.10938,7.0625 9.60547,7.14453c-3.51562,2.75781 -7.94922,4.39844 -12.76953,4.39844c-0.83203,0 -1.64844,-0.04687 -2.44922,-0.14453c4.54687,2.92188 9.95312,4.62109 15.76172,4.62109c18.91406,0 29.25781,-15.66797 29.25781,-29.25391c0,-0.44531 -0.01172,-0.89453 -0.02734,-1.33203c2.00781,-1.44922 3.75,-3.26172 5.12891,-5.32422z"
+              ></path>
+            </g>
+          </g>
+        </svg>
       </div>
       <p>Travel Tales &copy; 2024, All Right Reserved</p>
     </footer>
