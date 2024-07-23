@@ -25,6 +25,7 @@
 
 .features .feature-boxes {
   display: flex;
+  gap: 1rem;
 }
 
 .features .box {
