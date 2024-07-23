@@ -84,6 +84,7 @@
 .navbar .nav-menus {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .navbar .nav-items .nav-item {
@@ -110,7 +111,7 @@
   position: fixed;
   top: var(--navbar-height);
   right: -7rem;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.3);
   height: calc(100vh - var(--navbar-height));
   width: 0;
   opacity: 0;
@@ -131,7 +132,8 @@
   flex-direction: column;
   gap: 1rem;
   height: 100%;
-  background-color: var(--color-white);
+  background-color: rgba(244, 244, 244, 0.3);
+  backdrop-filter: blur(10px);
   transition: none;
 }
 
@@ -149,19 +151,21 @@
 }
 
 .navbar .nav-menu .nav-menu-item .a-link {
-  color: var(--color-black);
+  color: var(--color-white);
+  font-weight: 500;
   text-transform: uppercase;
   padding: 0;
+  border-bottom: 0.2rem solid transparent;
 }
 
 .navbar .nav-menu .nav-menu-item .a-link:hover {
-  border-bottom: 0.1rem solid var(--color-black);
+  border-bottom-color: var(--color-white);
 }
 
 .navbar .nav-menu span {
   display: block;
   width: 3.3rem;
-  height: 0.4rem;
+  height: 0.3rem;
   margin-bottom: 0.5rem;
   position: relative;
   border-radius: 0.3rem;
@@ -181,7 +185,7 @@
 }
 
 .navbar .nav-menu.open span.layer-3 {
-  transform: rotate(-45deg) translate(0px, 0px);
+  transform: rotate(-45deg) translate(-1px, 1px);
 }
 
 /* ALERT */
