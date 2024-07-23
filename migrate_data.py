@@ -12,13 +12,15 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 
-# Function to add admin user
-admin_user = User(
-    username="admin",
-    email="admin@tt.com",
-    password="Eht!sham",
-    is_admin=True,
-)
+# List of admin users to be added, emails must be different
+admin_user = [
+    User(
+        username="admin",
+        email="admin@tt.com",
+        password="TravelTales",
+        is_admin=True,
+    ),
+]
 
 
 if __name__ == "__main__":
@@ -27,7 +29,8 @@ if __name__ == "__main__":
         Base.metadata.create_all(bind=engine)
 
         # Add admin user
-        session.add(admin_user)
+        for admin in admin_user:
+            session.add(admin)
         session.commit()
     except exc.OperationalError:
         session.rollback()
