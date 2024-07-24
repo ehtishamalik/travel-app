@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   let logoEnterActive = false;
   let logoLeaveActive = false;
-  const logoActiveMaxWidth = 992;
+  const logoActiveMaxWidth = 768;
   const name = "Travel Tales";
 
   const mouseEnterOnLogo = () => {

@@ -1,6 +1,6 @@
 .header {
   position: relative;
-  height: 95vh;
+  height: 95svh;
   min-height: 50rem;
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)),
     url("/static/assets/header-image.jpeg");
@@ -30,7 +30,6 @@
 
 .features .box {
   padding: 2rem;
-  height: 20rem;
   text-align: center;
   box-shadow: 5px 5px 10px var(--color-gray);
   color: var(--color-white);
@@ -67,4 +66,21 @@
   100% {
     opacity: 0;
   }
+}
+
+@media (max-width: 992px) {
+}
+
+@media (max-width: 768px) {
+  .features .box {
+    padding: 1.5rem;
+  }
+
+  .features .feature-boxes {
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
 }
