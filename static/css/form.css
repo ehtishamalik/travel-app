@@ -84,6 +84,7 @@
 .form textarea {
   resize: none;
   font-family: inherit;
+  padding-bottom: 3rem;
 }
 
 input[type="file"] {
@@ -96,7 +97,10 @@ input[type="file"] {
 
 .form-group.has-input-image {
   display: inline-flex;
-  flex-direction: column;
+}
+
+.form-group.has-input-image label {
+  flex-basis: 100%;
 }
 
 .form-wrapper .account-text {
