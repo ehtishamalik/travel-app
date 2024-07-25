@@ -22,7 +22,6 @@ from src.helpers import (
 
 
 views = Blueprint("views", __name__)
-IMAGES_FOLDER = path.join("static", "images")
 
 
 @views.route("/", methods=["GET"])
@@ -96,7 +95,7 @@ def share():
                 )
                 current_app.logger.error(f"[ERROR]\n{e}\n\n")
             else:
-                save_compressed_image(path.join(IMAGES_FOLDER, image_name), image)
+                save_compressed_image(image_name, image)
                 flash("Destination added successfully.", category=SUCCESS)
                 return redirect(url_for("views.explore"))
     return render_template("share.html", view="share", user=current_user)
@@ -124,7 +123,7 @@ def explore():
 @login_required
 def admin():
     if current_user.is_admin:
-        return "Admin page"
+        return render_template("admin.html", view="admin", user=current_user)
     else:
         flash("You are unauthorized to view this resource.", category=ERROR)
         return redirect(url_for("views.home"))

@@ -1,3 +1,7 @@
+.register {
+  margin: auto 0;
+}
+
 .form-wrapper {
   border-radius: 2rem;
   max-width: 50rem;
@@ -71,9 +75,16 @@
   line-height: 1.9rem;
 }
 
+.form input:focus-visible,
+.form textarea:focus-visible {
+  outline: none;
+  border: 0.1rem solid var(--color-red);
+}
+
 .form textarea {
   resize: none;
   font-family: inherit;
+  padding-bottom: 3rem;
 }
 
 input[type="file"] {
@@ -86,5 +97,26 @@ input[type="file"] {
 
 .form-group.has-input-image {
   display: inline-flex;
-  flex-direction: column;
+}
+
+.form-group.has-input-image label {
+  flex-basis: 100%;
+}
+
+.form-wrapper .account-text {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.form-wrapper .account-text .button {
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .form input,
+  .form textarea {
+    font-size: 2rem;
+  }
 }

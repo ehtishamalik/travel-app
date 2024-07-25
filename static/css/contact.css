@@ -5,8 +5,13 @@
 }
 
 .contact-form-wrapper .company-address,
-.contact-form-wrapper .form {
+.contact-form-wrapper .form-wrapper {
   flex-basis: 45%;
+  margin: 0;
+}
+
+.contact-form-wrapper .form-wrapper .form {
+  padding: 0;
 }
 
 .contact-form .company-image img {
@@ -25,13 +30,53 @@
   border-radius: 2rem;
 }
 
+.company-address .address-group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 1rem;
+}
+
 .company-address .address-group i {
   display: inline-block;
+  width: 2rem;
+  height: 2rem;
+}
+
+.company-address .address-group i svg {
+  fill: var(--color-red);
 }
 
 .company-address .address-group h3 {
   display: inline-block;
   text-transform: uppercase;
-  margin-left: 1rem;
-  font-weight: 500;
+  margin: 0 0 0 1rem;
+  font-weight: 600;
+}
+
+.company-address .address-group p {
+  flex-basis: 100%;
+}
+
+@media (max-width: 992px) {
+  .contact-form .contact-form-wrapper {
+    padding: 0;
+  }
+
+  .contact-form-wrapper .company-address,
+  .contact-form-wrapper .form-wrapper {
+    flex-basis: 48%;
+  }
+}
+
+@media (max-width: 576px) {
+  .contact-form .contact-form-wrapper {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 5rem;
+  }
+
+  .contact-form-wrapper .company-address,
+  .contact-form-wrapper .form-wrapper {
+    flex-basis: auto;
+  }
 }

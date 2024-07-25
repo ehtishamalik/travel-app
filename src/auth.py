@@ -14,6 +14,7 @@ from src.constants import SUCCESS, ERROR, MESSAGE
 from src.models import User
 from src.models import db
 
+
 auth = Blueprint("auth", __name__)
 
 
@@ -29,7 +30,7 @@ def login():
 
         try:
             user = db.session.query(User).filter_by(email=email).first()
-            if user and check_password_hash(user.password, password):
+            if user and user.is_user_authenticated(password):
                 login_user(user, remember=True)
                 next_page = session.get("next", None)
                 if next_page:
@@ -79,9 +80,7 @@ def register():
         elif password != confirm_password:
             flash("Passwords must match.", category=ERROR)
         else:
-            new_user = User(
-                username, email, generate_password_hash(password), bool(is_admin)
-            )
+            new_user = User(username, email, password, bool(is_admin))
             try:
                 db.session.add(new_user)
                 db.session.commit()

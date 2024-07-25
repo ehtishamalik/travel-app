@@ -1,17 +1,21 @@
 {
   "name": "travel-app",
   "version": "1.0.0",
-  "description": "An application to manage users travel history",
+  "description": "An application to manage users' travel history and destination sharing.",
   "main": "app.py",
   "repository": "git@github.com:ehtishamalik/travel-app.git",
   "author": "ehtishamalik <malikehtishamali334@hotmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "flask --app app run",
-    "demo": "flask --app app run --debug",
-    "format": "black . --exclude '__pycache__|.venv|instance|migrations'",
+    "serve": "flask --app app run",
+    "dev": "flask --app app run --debug",
+    "format": "black . --exclude '__pycache__|.venv|migrations'",
+    "format:check": "black --check . --exclude '__pycache__|.venv|migrations'",
     "host": "ssh -p 443 -o ServerAliveInterval=30 -R0:127.0.0.1:5000 a.pinggy.io",
-    "pip:install": "pip install -r requirements.txt",
-    "pip:freeze": "pip freeze > requirements.txt"
+    "pip:install": "pip3 install -r requirements.txt",
+    "pip:freeze": "pip3 freeze > requirements.txt",
+    "db:init": "flask db init",
+    "db:migrate": "flask db migrate && flask db upgrade",
+    "db:add": "python3 migrate_data.py"
   }
 }

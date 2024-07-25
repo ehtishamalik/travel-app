@@ -1,7 +1,7 @@
-{% extends "index.html" %} {% block content %} {% block title %}Register |
-Travel Tales{% endblock %}
+{% extends "index.html" %} {% block title %}Register | Travel Tales{% endblock
+%} {% block content %}
 
-<section class="register">
+<section class="register has-nav">
   <div class="container">
     <div class="form-wrapper">
       <form
@@ -71,13 +71,10 @@ Travel Tales{% endblock %}
         >
           Register
         </button>
-        <p class="account-text">
-          Already have an account?<a
-            href="/login"
-            class="button is-style-tertiary"
-            >Login</a
-          >
-        </p>
+        <div class="account-text">
+          <p>Already have an account?</p>
+          <a href="/login" class="button is-style-tertiary">Login</a>
+        </div>
       </form>
     </div>
   </div>

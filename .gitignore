@@ -9,8 +9,7 @@ instance
 migrations
 
 # Ignore images in static folder
-website/static/images/*
+static/images/*
 
 # Except the .gitkeep file
-!database/.gitkeep
-!website/static/images/.gitkeep
+!static/images/.gitkeep
