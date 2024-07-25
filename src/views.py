@@ -95,7 +95,7 @@ def share():
                 )
                 current_app.logger.error(f"[ERROR]\n{e}\n\n")
             else:
-                save_compressed_image(path.join(image_name), image)
+                save_compressed_image(image_name, image)
                 flash("Destination added successfully.", category=SUCCESS)
                 return redirect(url_for("views.explore"))
     return render_template("share.html", view="share", user=current_user)
