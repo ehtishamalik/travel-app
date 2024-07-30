@@ -4,6 +4,7 @@ from flask import (
     flash,
     redirect,
     url_for,
+    send_from_directory,
     request,
     current_app,
 )
@@ -88,6 +89,7 @@ def share():
                 )
                 db.session.add(destination)
                 db.session.commit()
+                save_compressed_image(image_name, image)
             except Exception as e:
                 db.session.rollback()
                 flash(
@@ -95,7 +97,6 @@ def share():
                 )
                 current_app.logger.error(f"[ERROR]\n{e}\n\n")
             else:
-                save_compressed_image(image_name, image)
                 flash("Destination added successfully.", category=SUCCESS)
                 return redirect(url_for("views.explore"))
     return render_template("share.html", view="share", user=current_user)
@@ -127,3 +128,9 @@ def admin():
     else:
         flash("You are unauthorized to view this resource.", category=ERROR)
         return redirect(url_for("views.home"))
+
+
+@views.route("/images/<path:filename>", methods=["GET"])
+@login_required
+def get_images(filename):
+    return send_from_directory("images", filename)

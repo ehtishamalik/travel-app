@@ -4,10 +4,13 @@ from flask_migrate import Migrate
 from flask import Flask
 import logging
 import os
-from src import db
+from src import db, IMAGES_FOLDER
 
 
 def create_app():
+    if not os.path.exists(IMAGES_FOLDER):
+        os.mkdir(IMAGES_FOLDER)
+
     app = Flask(__name__)
     app.config["SECRET_KEY"] = os.urandom(24).hex()
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///./database.db"

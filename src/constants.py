@@ -1,6 +1,4 @@
-from os import path
-
-IMAGES_FOLDER = path.join("static", "images")
+IMAGES_FOLDER = "images"
 SUCCESS = "success"
 ERROR = "error"
 MESSAGE = "message"
