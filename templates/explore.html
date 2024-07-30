@@ -1,9 +1,16 @@
 {% extends "index.html" %} {% block title %}Explore | Travel Tales{% endblock %}
-{% block content %} {% if destinations|length == 0 %}
+{% block content %}
+
+<header class="has-nav pad">
+  <div class="container">
+    <h1>Destinations</h1>
+  </div>
+</header>
+
+{% if destinations|length == 0 %}
 
 <section class="showcase-empty">
   <div class="container">
-    <h1 class="mb-5">Destinations</h1>
     <div class="showcase-empty-wrapper">
       <h2>Nothing to Show</h2>
       <p>
@@ -20,9 +27,8 @@
 
 {% else %}
 
-<section class="showcase has-nav">
+<section class="showcase">
   <div class="container">
-    <h1 class="mb-5">Destinations</h1>
     {% for destination in destinations %} {% set row_class = 'image-right' if
     destination[0] % 2 == 1 else 'image-left' %}
     <div class="content-side-image {{ row_class }}">
