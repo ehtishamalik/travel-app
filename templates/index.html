@@ -28,7 +28,7 @@
           <a class="logo" href="/">TT</a>
         </div>
         <div class="nav-menus">
-          {% if not user.is_authenticated %}
+          {% if not current_user.is_authenticated %}
           <ul class="nav-items">
             <li class="nav-item">
               <a class="a-link text-white" href="{{ url_for('auth.login') }}"
@@ -49,7 +49,7 @@
             <span class="layer-3"></span>
             <div class="nav-menu-container">
               <ul class="nav-menu-items">
-                {% if user.is_authenticated %}
+                {% if current_user.is_authenticated %}
                 <li class="nav-menu-item">
                   <a
                     class="a-link text-white"
@@ -57,7 +57,7 @@
                     >home</a
                   >
                 </li>
-                {% if user.is_admin %}
+                {% if current_user.is_admin %}
                 <li class="nav-menu-item">
                   <a
                     class="a-link text-white"
@@ -88,7 +88,7 @@
                     >contact us</a
                   >
                 </li>
-                {% if user.is_authenticated %}
+                {% if current_user.is_authenticated %}
                 <li class="nav-menu-item logout">
                   <a
                     class="a-link text-white"
@@ -158,15 +158,11 @@
         <p>Travel Tales &copy; 2024, All Right Reserved</p>
       </div>
     </footer>
-    <script
-      type="module"
-      src="{{url_for('static', filename='js/app.js')}}"
-    ></script>
+    <script src="{{url_for('static', filename='js/app.js')}}"></script>
     {% if view == 'home' %}
-    <script
-      type="module"
-      src="{{url_for('static', filename='js/home.js')}}"
-    ></script>
+    <script src="{{url_for('static', filename='js/home.js')}}"></script>
+    {% endif %} {% if view == 'admin' %}
+    <script src="{{url_for('static', filename='js/admin.js')}}"></script>
     {% endif %}
   </body>
 </html>
