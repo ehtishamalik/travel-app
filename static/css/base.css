@@ -90,6 +90,7 @@ section {
   padding: 5rem 0;
 }
 
+header.has-nav,
 section.has-nav {
   margin-top: var(--navbar-height);
 }
@@ -148,7 +149,7 @@ section.has-nav {
   margin: 0 auto;
 }
 
-section h1::after {
+header h1::after {
   content: "";
   display: block;
   width: 100%;
@@ -156,8 +157,16 @@ section h1::after {
   background-color: var(--color-red);
 }
 
+header.pad {
+  padding: 5rem 0 0 0;
+}
+
 @media (max-width: 768px) {
   html {
     font-size: 50%;
+  }
+
+  .container {
+    padding: 0 2rem;
   }
 }

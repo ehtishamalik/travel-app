@@ -233,7 +233,7 @@
 .footer {
   background-color: var(--color-bg);
   text-align: center;
-  padding: 2rem 0 1rem;
+  padding: 4rem 0 2rem;
   color: var(--color-white);
 }
 
@@ -339,6 +339,11 @@
   .button.is-style-primary,
   .button.is-style-secondary {
     padding: 1em 1.2em;
+  }
+
+  /* FOOTER */
+  .footer {
+    padding: 2rem 0 1rem;
   }
 }
 
