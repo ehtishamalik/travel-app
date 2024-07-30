@@ -9,7 +9,6 @@ from flask import (
     current_app,
 )
 from flask_login import login_user, logout_user, current_user
-from werkzeug.security import generate_password_hash, check_password_hash
 from src.constants import SUCCESS, ERROR, MESSAGE
 from src.models import User
 from src.models import db
@@ -47,7 +46,7 @@ def login():
             current_app.logger.error(f"[ERROR]\n{e}")
 
     session["next"] = request.args.get("next")
-    return render_template("login.html", view="login", user=current_user)
+    return render_template("login.html", view="login", current_user=current_user)
 
 
 @auth.route("/logout")
@@ -101,4 +100,4 @@ def register():
                         "Account created successfully, please log in.", category=SUCCESS
                     )
                     return redirect(url_for("auth.login"))
-    return render_template("register.html", view="register", user=current_user)
+    return render_template("register.html", view="register", current_user=current_user)

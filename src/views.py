@@ -11,7 +11,7 @@ from flask import (
 from flask_login import login_required, current_user
 from urllib.parse import urlparse
 from os import path
-from src.models import Destination, Messages
+from src.models import Destination, Messages, User
 from src.constants import SUCCESS, ERROR
 from src.models import db
 from src.helpers import (
@@ -27,12 +27,12 @@ views = Blueprint("views", __name__)
 
 @views.route("/", methods=["GET"])
 def home():
-    return render_template("home.html", view="home", user=current_user)
+    return render_template("home.html", view="home", current_user=current_user)
 
 
 @views.route("/about", methods=["GET"])
 def about():
-    return render_template("about.html", view="about", user=current_user)
+    return render_template("about.html", view="about", current_user=current_user)
 
 
 @views.route("/contact", methods=["GET", "POST"])
@@ -53,7 +53,7 @@ def contact():
         else:
             flash("Thank you for your feedback.", category=SUCCESS)
 
-    return render_template("contact.html", view="contact", user=current_user)
+    return render_template("contact.html", view="contact", current_user=current_user)
 
 
 @views.route("/share", methods=["GET", "POST"])
@@ -99,7 +99,7 @@ def share():
             else:
                 flash("Destination added successfully.", category=SUCCESS)
                 return redirect(url_for("views.explore"))
-    return render_template("share.html", view="share", user=current_user)
+    return render_template("share.html", view="share", current_user=current_user)
 
 
 @views.route("/explore", methods=["GET"])
@@ -116,7 +116,7 @@ def explore():
         current_app.logger.error(f"[ERROR]\n{e}\n\n")
         to_tuple = []
     return render_template(
-        "explore.html", destinations=to_tuple, view="explore", user=current_user
+        "explore.html", destinations=to_tuple, view="explore", current_user=current_user
     )
 
 
@@ -124,7 +124,15 @@ def explore():
 @login_required
 def admin():
     if current_user.is_admin:
-        return render_template("admin.html", view="admin", user=current_user)
+        try:
+            users = db.session.query(User).all()
+            users_tuple = [sqlalchemy_to_tuple(user) for user in users]
+            messages = db.session.query(Messages).all()
+            messages_tuple = [sqlalchemy_to_tuple(message) for message in messages]
+        except Exception as e:
+            flash("Could not fetch data from the Database", category=ERROR)
+            current_app.logger.error(f"[ERROR]\n{e}\n\n")
+        return render_template("admin.html", view="admin", current_user=current_user, users=users_tuple, messages=messages_tuple)
     else:
         flash("You are unauthorized to view this resource.", category=ERROR)
         return redirect(url_for("views.home"))

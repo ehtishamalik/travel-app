@@ -42,7 +42,7 @@ def create_app():
 
     @app.template_filter("include")
     def include(view):
-        return view in ["home", "about", "contact"]
+        return view in ["home", "about", "contact", "admin"]
 
     # Load current user
     from src.models import User
