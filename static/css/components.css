@@ -7,6 +7,8 @@
   color: var(--color-red);
   outline: none;
   cursor: pointer;
+  border: none;
+  background: transparent;
 }
 
 .button.is-style-primary {
