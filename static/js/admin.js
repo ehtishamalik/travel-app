@@ -6,19 +6,18 @@ document.addEventListener("DOMContentLoaded", function () {
       const id = row.dataset.id;
 
       if (confirm("Are you sure you want to delete this user?")) {
-        fetch(`/users/${id}`, {
+        fetch(`/api/users/${id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
           },
         })
-          .then((response) => {
-            if (response.ok) {
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.status === "deleted") {
               row.remove();
-              alert("User deleted successfully!");
-            } else {
-              alert("Failed to delete the user.");
             }
+            alert(data.message);
           })
           .catch((error) => {
             console.error("Error:", error);
@@ -35,19 +34,18 @@ document.addEventListener("DOMContentLoaded", function () {
       const id = row.dataset.id;
 
       if (confirm("Are you sure you want to delete this message?")) {
-        fetch(`/messages/${id}`, {
+        fetch(`/api/messages/${id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
           },
         })
-          .then((response) => {
-            if (response.ok) {
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.status === "deleted") {
               row.remove();
-              alert("Message deleted successfully!");
-            } else {
-              alert("Failed to delete the message.");
             }
+            alert(data.message);
           })
           .catch((error) => {
             console.error("Error:", error);

@@ -40,6 +40,9 @@
           <td>{{ user[4] }}</td>
           <td>{{ user[5] }}</td>
           <td>
+            {% if current_user.uid == user[0] %}
+            <span>Current User</span>
+            {% else %}
             <button
               type="button"
               class="button is-style-tertiary"
@@ -47,6 +50,7 @@
             >
               Delete
             </button>
+            {% endif %}
           </td>
         </tr>
         {% endfor %}

@@ -31,10 +31,14 @@
   font-weight: 500;
 }
 
-/* .admin-table tr:nth-child(even) {
-  background-color: #f9f9f9;
-} */
-
 .admin-table tr:hover {
   background-color: var(--color-white);
+}
+
+.admin-actions {
+  padding-bottom: 0;
+}
+
+.admin-actions .admin-actions__actions {
+  display: flex;
 }

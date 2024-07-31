@@ -10,7 +10,6 @@ from flask import (
 )
 from flask_login import login_required, current_user
 from urllib.parse import urlparse
-from os import path
 from src.models import Destination, Messages, User
 from src.constants import SUCCESS, ERROR
 from src.models import db
@@ -132,7 +131,13 @@ def admin():
         except Exception as e:
             flash("Could not fetch data from the Database", category=ERROR)
             current_app.logger.error(f"[ERROR]\n{e}\n\n")
-        return render_template("admin.html", view="admin", current_user=current_user, users=users_tuple, messages=messages_tuple)
+        return render_template(
+            "admin.html",
+            view="admin",
+            current_user=current_user,
+            users=users_tuple,
+            messages=messages_tuple,
+        )
     else:
         flash("You are unauthorized to view this resource.", category=ERROR)
         return redirect(url_for("views.home"))

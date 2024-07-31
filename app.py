@@ -20,9 +20,11 @@ def create_app():
     # Register Blueprints
     from src.views import views
     from src.auth import auth
+    from src.apis import apis
 
     app.register_blueprint(views, url_prefix="/")
     app.register_blueprint(auth, url_prefix="/")
+    app.register_blueprint(apis, url_prefix="/api/")
 
     Migrate(app, db)
 

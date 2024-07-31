@@ -1,4 +1,5 @@
 IMAGES_FOLDER = "images"
 SUCCESS = "success"
 ERROR = "error"
+DELETED = "deleted"
 MESSAGE = "message"
