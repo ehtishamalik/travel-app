@@ -13,9 +13,14 @@
 
 .button.is-style-primary {
   background-color: var(--color-white);
+  border: 0.1rem solid var(--color-red);
   padding: 0.6em 1.2em;
   border-radius: 3rem;
   text-transform: uppercase;
+}
+
+.button.no-border.is-style-primary {
+  border: none;
 }
 
 .button.is-style-primary:hover {
