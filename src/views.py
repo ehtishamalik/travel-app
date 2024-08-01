@@ -92,7 +92,7 @@ def share():
             except Exception as e:
                 db.session.rollback()
                 flash(
-                    "Could not add your destination, please try again", category=ERROR
+                    "An error occurred while adding your destination. Please try again!", category=ERROR
                 )
                 current_app.logger.error(f"[ERROR]\n{e}\n\n")
             else:
@@ -109,7 +109,7 @@ def explore():
         to_tuple = [sqlalchemy_to_tuple(destination) for destination in destinations]
     except Exception as e:
         flash(
-            "Something went wrong, we could not load all the places. Please reload the page",
+            "An error occurred while loading all the places. Please reload!",
             category="error",
         )
         current_app.logger.error(f"[ERROR]\n{e}\n\n")
@@ -129,7 +129,7 @@ def admin():
             messages = db.session.query(Messages).all()
             messages_tuple = [sqlalchemy_to_tuple(message) for message in messages]
         except Exception as e:
-            flash("Could not fetch data from the Database", category=ERROR)
+            flash("An error occurred while fetching data from the Database. Please reload!", category=ERROR)
             current_app.logger.error(f"[ERROR]\n{e}\n\n")
         return render_template(
             "admin.html",
@@ -143,7 +143,42 @@ def admin():
         return redirect(url_for("views.home"))
 
 
+# Needs to move to the apis
 @views.route("/images/<path:filename>", methods=["GET"])
 @login_required
 def get_images(filename):
     return send_from_directory("images", filename)
+
+
+
+@views.route("/favicon.ico", methods=["GET"])
+def get_favicon():
+    return send_from_directory("static", "assets/favicon.png")
+
+
+@views.route("/my_profile", methods=["GET", "POST"])
+@login_required
+def my_profile():
+    if request.method == "POST":
+        old_password = request.form.get("old-password", "").strip()
+        new_password = request.form.get("new-password", "").strip()
+        if old_password and new_password:
+            try:
+                user = db.session.query(User).filter_by(uid=current_user.uid).first()
+                if user.is_user_authenticated(old_password):
+                    if len(new_password) >= 6:
+                        user.update_password(new_password)
+                        db.session.commit()
+                        flash("Password Updated successfully.", category=SUCCESS)
+                    else:
+                        flash("New password must be longer than 6 characters.", category=ERROR)
+                else:
+                    flash("Old password does not match.", category=ERROR)
+            except Exception as e:
+                flash("An error occurred while updating the password.", category=ERROR)
+                current_app.logger.error(f"[ERROR]\n{e}\n\n")
+        else:
+            flash("Both passwords are required.", category=ERROR)
+    return render_template(
+        "profile.html", view="profile", current_user=current_user
+    )

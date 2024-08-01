@@ -72,10 +72,10 @@ def register():
             flash("Username, email and password are all required.", category=ERROR)
         elif len(username) > 40:
             flash("Username must be smaller than 40 characters.", category=ERROR)
-        elif len(username) < 8:
+        elif len(username) < 6:
             flash("Username must be longer than 6 characters.", category=ERROR)
-        elif len(password) < 8:
-            flash("Username must be longer than 6 characters.", category=ERROR)
+        elif len(password) < 6:
+            flash("Password must be longer than 6 characters.", category=ERROR)
         elif password != confirm_password:
             flash("Passwords must match.", category=ERROR)
         else:

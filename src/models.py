@@ -71,10 +71,13 @@ class User(db.Model, UserMixin):
         self.is_admin = is_admin
 
     def get_id(self):
-        return str(self.uid)
+        return int(self.uid)
 
-    def is_user_authenticated(self, password):
+    def is_user_authenticated(self, password: str):
         return check_password_hash(self.password, password)
+
+    def update_password(self, password: str):
+        self.password = generate_password_hash(password)
 
     def __repr__(self):
         return f"<<{self.uid}, {self.username}, {self.email}, {self.password}, {self.created_at}>>"

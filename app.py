@@ -44,14 +44,14 @@ def create_app():
 
     @app.template_filter("include")
     def include(view):
-        return view in ["home", "about", "contact", "admin"]
+        return view in ["home", "about", "contact", "admin", "profile"]
 
     # Load current user
     from src.models import User
 
     @login_manager.user_loader
     def load_user(id):
-        return db.session.query(User).filter_by(uid=int(id)).first()
+        return db.session.query(User).filter_by(uid=id).first()
 
     return app
 
