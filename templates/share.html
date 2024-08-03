@@ -1,6 +1,12 @@
-{% extends "index.html" %} {% block content %} {% block title %}Share | Travel
-Tales{% endblock %}
+{% extends "index.html" %} {% block title %}Share | Travel Tales{% endblock %}
+{% block content %}
 
+<header class="pad has-nav">
+  <div class="container">
+    <h1>Share Destination</h1>
+    <p class="text-gray">Share your experience with others.</p>
+  </div>
+</header>
 <section class="share">
   <div class="container">
     <div class="form-wrapper">
@@ -10,8 +16,6 @@ Tales{% endblock %}
         method="post"
         enctype="multipart/form-data"
       >
-        <h1>Destination</h1>
-        <p class="text-gray">Share your experience with others.</p>
         <div class="form-group">
           <label for="desname">Destination Name</label>
           <input
@@ -58,7 +62,7 @@ Tales{% endblock %}
             required
           />
         </div>
-        <button id="submit-btn" type="submit" class="button is-style-secondary">
+        <button id="submit-btn" type="submit" class="button is-style-primary">
           Submit
         </button>
       </form>

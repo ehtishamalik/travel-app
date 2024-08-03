@@ -8,8 +8,6 @@ error.log.1
 instance
 migrations
 
-# Ignore images in static folder
-static/images/*
+# Ignore images uploaded by users
+/images
 
-# Except the .gitkeep file
-!static/images/.gitkeep

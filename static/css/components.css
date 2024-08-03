@@ -7,13 +7,20 @@
   color: var(--color-red);
   outline: none;
   cursor: pointer;
+  border: none;
+  background: transparent;
 }
 
 .button.is-style-primary {
   background-color: var(--color-white);
+  border: 0.1rem solid var(--color-red);
   padding: 0.6em 1.2em;
   border-radius: 3rem;
   text-transform: uppercase;
+}
+
+.button.no-border.is-style-primary {
+  border: none;
 }
 
 .button.is-style-primary:hover {
@@ -85,6 +92,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  gap: 1.5rem;
 }
 
 .navbar .nav-items .nav-item {
@@ -94,16 +102,18 @@
 }
 
 .navbar .nav-menu {
-  padding-left: 1rem;
+  position: relative;
+  width: 3.2rem;
 }
 
 .navbar .nav-menu #menu-button {
   display: block;
   position: absolute;
   cursor: pointer;
-  width: 32px;
-  height: 24px;
+  width: 3.2rem;
+  height: 2.4rem;
   opacity: 0;
+  margin: 0;
   z-index: 2;
 }
 
@@ -164,7 +174,7 @@
 
 .navbar .nav-menu span {
   display: block;
-  width: 3.3rem;
+  width: 3.2rem;
   height: 0.3rem;
   margin-bottom: 0.5rem;
   position: relative;
@@ -233,7 +243,7 @@
 .footer {
   background-color: var(--color-bg);
   text-align: center;
-  padding: 2rem 0 1rem;
+  padding: 4rem 0 2rem;
   color: var(--color-white);
 }
 
@@ -340,6 +350,11 @@
   .button.is-style-secondary {
     padding: 1em 1.2em;
   }
+
+  /* FOOTER */
+  .footer {
+    padding: 2rem 0 1rem;
+  }
 }
 
 @media (max-width: 576px) {
@@ -350,6 +365,10 @@
   }
 
   /* NAVBAR */
+  .navbar .nav-menus .nav-items {
+    display: none;
+  }
+
   .navbar .nav-menu.open .nav-menu-items {
     width: 70%;
     padding: 4rem 5rem 4rem 3rem;

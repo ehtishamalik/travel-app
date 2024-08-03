@@ -1,9 +1,98 @@
 {% extends "index.html" %} {% block title %}Admin | Travel Tales{% endblock %}
 {% block content %}
 
-<section class="admin">
+<header class="pad has-nav">
   <div class="container">
     <h1>Admin Dashboard</h1>
   </div>
+</header>
+
+<section class="section admin-actions">
+  <div class="container">
+    <h2 class="admin-actions__heading">Admin Actions</h2>
+    <div class="admin-actions__actions">
+      <a href="/register" class="button is-style-tertiary">Register New User</a>
+      <a href="/explore" class="button is-style-tertiary">View all Places</a>
+    </div>
+  </div>
 </section>
+
+<section class="section admin-table-users">
+  <div class="container">
+    <h2 class="admin-table-users__heading">Registered Users</h2>
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th class="text-center">User Id</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Is Admin</th>
+          <th>Created At</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr data-id="{{ user[0] }}">
+          <td class="text-center">{{ user[0] }}</td>
+          <td>{{ user[1] }}</td>
+          <td>{{ user[2] }}</td>
+          <td>{{ user[4] }}</td>
+          <td>{{ user[5] }}</td>
+          <td>
+            {% if current_user.uid == user[0] %}
+            <span>Current User</span>
+            {% else %}
+            <button
+              type="button"
+              class="button is-style-tertiary"
+              id="delete-user"
+            >
+              Delete
+            </button>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section admin-table-messages">
+  <div class="container">
+    <h2 class="admin-table-users__heading">Contact Us Messages</h2>
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th class="text-center">ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Message</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for message in messages %}
+        <tr data-id="{{ message[0] }}">
+          <td class="text-center">{{ message[0] }}</td>
+          <td>{{ message[1] }}</td>
+          <td>{{ message[2] }}</td>
+          <td>{{ message[3] }}</td>
+          <td>
+            <button
+              type="button"
+              class="button is-style-tertiary"
+              id="delete-message"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
 {% endblock %}

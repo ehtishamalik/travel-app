@@ -1,7 +1,13 @@
 {% extends "index.html" %} {% block title %}Register | Travel Tales{% endblock
 %} {% block content %}
 
-<section class="register has-nav">
+<header class="pad has-nav">
+  <div class="container">
+    <h1>Register</h1>
+  </div>
+</header>
+
+<section class="register">
   <div class="container">
     <div class="form-wrapper">
       <form
@@ -10,7 +16,6 @@
         class="form"
         id="registration-form"
       >
-        <h1>Register</h1>
         <div class="form-group">
           <label for="username">Name</label>
           <input
@@ -58,17 +63,13 @@
             required
           />
         </div>
-        {% if user.is_authenticated and user.is_admin %}
+        {% if current_user.is_authenticated and current_user.is_admin %}
         <div class="form-group flex-center">
           <input type="checkbox" id="create-admin" name="admin" />
           <label for="create-admin">Create Admin</label>
         </div>
         {% endif %}
-        <button
-          id="register-btn"
-          type="submit"
-          class="button is-style-secondary"
-        >
+        <button id="register-btn" type="submit" class="button is-style-primary">
           Register
         </button>
         <div class="account-text">

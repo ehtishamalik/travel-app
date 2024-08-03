@@ -9,7 +9,6 @@ from flask import (
     current_app,
 )
 from flask_login import login_user, logout_user, current_user
-from werkzeug.security import generate_password_hash, check_password_hash
 from src.constants import SUCCESS, ERROR, MESSAGE
 from src.models import User
 from src.models import db
@@ -47,7 +46,7 @@ def login():
             current_app.logger.error(f"[ERROR]\n{e}")
 
     session["next"] = request.args.get("next")
-    return render_template("login.html", view="login", user=current_user)
+    return render_template("login.html", view="login", current_user=current_user)
 
 
 @auth.route("/logout")
@@ -73,10 +72,10 @@ def register():
             flash("Username, email and password are all required.", category=ERROR)
         elif len(username) > 40:
             flash("Username must be smaller than 40 characters.", category=ERROR)
-        elif len(username) < 8:
+        elif len(username) < 6:
             flash("Username must be longer than 6 characters.", category=ERROR)
-        elif len(password) < 8:
-            flash("Username must be longer than 6 characters.", category=ERROR)
+        elif len(password) < 6:
+            flash("Password must be longer than 6 characters.", category=ERROR)
         elif password != confirm_password:
             flash("Passwords must match.", category=ERROR)
         else:
@@ -101,4 +100,4 @@ def register():
                         "Account created successfully, please log in.", category=SUCCESS
                     )
                     return redirect(url_for("auth.login"))
-    return render_template("register.html", view="register", user=current_user)
+    return render_template("register.html", view="register", current_user=current_user)

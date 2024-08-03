@@ -1,0 +1,22 @@
+.form-wrapper h2 {
+  text-align: center;
+}
+
+.profile-container {
+  margin-bottom: 5rem;
+}
+
+.profile-container .profile-heading {
+  margin-bottom: 2.2rem;
+}
+
+.profile-container .profile-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+.profile-container .profile-key,
+.profile-container .profile-value {
+  margin: 0;
+}

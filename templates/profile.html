@@ -1,0 +1,71 @@
+{% extends "index.html" %} {% block title %}Profile | Travel Tales{% endblock %}
+{%block content %}
+
+<header class="pad has-nav">
+  <div class="container">
+    <h1>My Profile</h1>
+  </div>
+</header>
+
+<section class="profile">
+  <div class="container">
+    <div class="form-wrapper">
+      <form
+        action="{{ url_for('views.my_profile') }}"
+        method="post"
+        class="form"
+      >
+        <div class="profile-container">
+          <h2 class="profile-heading">User Profile</h2>
+          <div class="profile-row">
+            <h3 class="profile-key">Name</h3>
+            <p class="profile-value">{{ current_user.username }}</p>
+          </div>
+          <div class="profile-row">
+            <h3 class="profile-key">Email</h3>
+            <p class="profile-value">{{ current_user.email }}</p>
+          </div>
+          {% if current_user.is_admin %}
+          <div class="profile-row">
+            <h3 class="profile-key">Admin</h3>
+            <p class="profile-value">Yes</p>
+          </div>
+          {% endif %}
+          <div class="profile-row">
+            <h3 class="profile-key">Created At</h3>
+            <p class="profile-value">{{ current_user.created_at }}</p>
+          </div>
+        </div>
+        <h2>Update Password</h2>
+        <div class="form-group">
+          <label for="old-password">Old Password</label>
+          <input
+            type="password"
+            id="old-password"
+            name="old-password"
+            minlength="6"
+            maxlength="40"
+            placeholder="🙌"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="new-password">New Password</label>
+          <input
+            type="password"
+            id="new-password"
+            name="new-password"
+            minlength="6"
+            maxlength="40"
+            placeholder="🙌"
+            required
+          />
+        </div>
+        <button id="submit-btn" type="submit" class="button is-style-primary">
+          Update Password
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

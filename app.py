@@ -4,10 +4,13 @@ from flask_migrate import Migrate
 from flask import Flask
 import logging
 import os
-from src import db
+from src import db, IMAGES_FOLDER
 
 
 def create_app():
+    if not os.path.exists(IMAGES_FOLDER):
+        os.mkdir(IMAGES_FOLDER)
+
     app = Flask(__name__)
     app.config["SECRET_KEY"] = os.urandom(24).hex()
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///./database.db"
@@ -17,9 +20,11 @@ def create_app():
     # Register Blueprints
     from src.views import views
     from src.auth import auth
+    from src.apis import apis
 
     app.register_blueprint(views, url_prefix="/")
     app.register_blueprint(auth, url_prefix="/")
+    app.register_blueprint(apis, url_prefix="/api/")
 
     Migrate(app, db)
 
@@ -39,14 +44,14 @@ def create_app():
 
     @app.template_filter("include")
     def include(view):
-        return view in ["home", "about", "contact"]
+        return view in ["home", "about", "contact", "admin", "profile"]
 
     # Load current user
     from src.models import User
 
     @login_manager.user_loader
     def load_user(id):
-        return db.session.query(User).filter_by(uid=int(id)).first()
+        return db.session.query(User).filter_by(uid=id).first()
 
     return app
 

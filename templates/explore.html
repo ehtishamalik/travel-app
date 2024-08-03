@@ -1,9 +1,16 @@
 {% extends "index.html" %} {% block title %}Explore | Travel Tales{% endblock %}
-{% block content %} {% if destinations|length == 0 %}
+{% block content %}
+
+<header class="has-nav pad">
+  <div class="container">
+    <h1>Destinations</h1>
+  </div>
+</header>
+
+{% if destinations|length == 0 %}
 
 <section class="showcase-empty">
   <div class="container">
-    <h1 class="mb-5">Destinations</h1>
     <div class="showcase-empty-wrapper">
       <h2>Nothing to Show</h2>
       <p>
@@ -20,16 +27,13 @@
 
 {% else %}
 
-<section class="showcase has-nav">
+<section class="showcase">
   <div class="container">
-    <h1 class="mb-5">Destinations</h1>
     {% for destination in destinations %} {% set row_class = 'image-right' if
     destination[0] % 2 == 1 else 'image-left' %}
     <div class="content-side-image {{ row_class }}">
       <div class="img-container">
-        <img
-          src="{{url_for('static', filename='images/' + destination[4]) }}"
-        />
+        <img src="{{url_for('views.get_images', filename=destination[4]) }}" />
       </div>
       <div class="content-container">
         <div class="text-container">
@@ -37,7 +41,11 @@
           <p class="text-gray">{{ destination[2] }}</p>
         </div>
         <div class="button-container">
-          <a class="button is-style-tertiary" href="{{ destination[3] }}"
+          <a
+            class="button is-style-tertiary"
+            href="{{ destination[3] }}"
+            target="_blank"
+            rel="noopener noreferrer"
             >learn more</a
           >
         </div>

@@ -10,10 +10,6 @@
   margin: 0;
 }
 
-.contact-form-wrapper .form-wrapper .form {
-  padding: 0;
-}
-
 .contact-form .company-image img {
   object-fit: cover;
   overflow: hidden;
