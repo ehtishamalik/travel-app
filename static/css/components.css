@@ -92,6 +92,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  gap: 1.5rem;
 }
 
 .navbar .nav-items .nav-item {
@@ -101,16 +102,18 @@
 }
 
 .navbar .nav-menu {
-  padding-left: 1rem;
+  position: relative;
+  width: 3.2rem;
 }
 
 .navbar .nav-menu #menu-button {
   display: block;
   position: absolute;
   cursor: pointer;
-  width: 32px;
-  height: 24px;
+  width: 3.2rem;
+  height: 2.4rem;
   opacity: 0;
+  margin: 0;
   z-index: 2;
 }
 
@@ -171,7 +174,7 @@
 
 .navbar .nav-menu span {
   display: block;
-  width: 3.3rem;
+  width: 3.2rem;
   height: 0.3rem;
   margin-bottom: 0.5rem;
   position: relative;
@@ -362,6 +365,10 @@
   }
 
   /* NAVBAR */
+  .navbar .nav-menus .nav-items {
+    display: none;
+  }
+
   .navbar .nav-menu.open .nav-menu-items {
     width: 70%;
     padding: 4rem 5rem 4rem 3rem;
