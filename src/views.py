@@ -92,7 +92,8 @@ def share():
             except Exception as e:
                 db.session.rollback()
                 flash(
-                    "An error occurred while adding your destination. Please try again!", category=ERROR
+                    "An error occurred while adding your destination. Please try again!",
+                    category=ERROR,
                 )
                 current_app.logger.error(f"[ERROR]\n{e}\n\n")
             else:
@@ -129,7 +130,10 @@ def admin():
             messages = db.session.query(Messages).all()
             messages_tuple = [sqlalchemy_to_tuple(message) for message in messages]
         except Exception as e:
-            flash("An error occurred while fetching data from the Database. Please reload!", category=ERROR)
+            flash(
+                "An error occurred while fetching data from the Database. Please reload!",
+                category=ERROR,
+            )
             current_app.logger.error(f"[ERROR]\n{e}\n\n")
         return render_template(
             "admin.html",
@@ -148,7 +152,6 @@ def admin():
 @login_required
 def get_images(filename):
     return send_from_directory("images", filename)
-
 
 
 @views.route("/favicon.ico", methods=["GET"])
@@ -171,7 +174,10 @@ def my_profile():
                         db.session.commit()
                         flash("Password Updated successfully.", category=SUCCESS)
                     else:
-                        flash("New password must be longer than 6 characters.", category=ERROR)
+                        flash(
+                            "New password must be longer than 6 characters.",
+                            category=ERROR,
+                        )
                 else:
                     flash("Old password does not match.", category=ERROR)
             except Exception as e:
@@ -179,6 +185,4 @@ def my_profile():
                 current_app.logger.error(f"[ERROR]\n{e}\n\n")
         else:
             flash("Both passwords are required.", category=ERROR)
-    return render_template(
-        "profile.html", view="profile", current_user=current_user
-    )
+    return render_template("profile.html", view="profile", current_user=current_user)

@@ -1,12 +1,9 @@
-from flask import (
-    Blueprint,
-    jsonify,
-    current_app
-)
-from src.models import Destination, Messages, User
+from flask import Blueprint, jsonify, current_app
+from src.models import Messages, User
 from src.models import db
 from flask_login import current_user
 from src.constants import DELETED, ERROR
+
 
 apis = Blueprint("apis", __name__)
 
@@ -32,14 +29,20 @@ def users(user_id):
         else:
             return (
                 jsonify(
-                    {"status": DELETED, "message": f"{user.username} deleted successfully."}
+                    {
+                        "status": DELETED,
+                        "message": f"{user.username} deleted successfully.",
+                    }
                 ),
                 200,
             )
     else:
         return (
             jsonify(
-                {"status": ERROR, "message": "You are unauthorized to view this resource."}
+                {
+                    "status": ERROR,
+                    "message": "You are unauthorized to view this resource.",
+                }
             ),
             401,
         )
@@ -66,14 +69,20 @@ def messages(message_id):
         else:
             return (
                 jsonify(
-                    {"status": DELETED, "message": f"Message from {message.username} deleted successfully."}
+                    {
+                        "status": DELETED,
+                        "message": f"Message from {message.username} deleted successfully.",
+                    }
                 ),
                 200,
             )
     else:
         return (
             jsonify(
-                {"status": ERROR, "message": "You are unauthorized to view this resource."}
+                {
+                    "status": ERROR,
+                    "message": "You are unauthorized to view this resource.",
+                }
             ),
             401,
         )

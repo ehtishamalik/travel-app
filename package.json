@@ -7,11 +7,11 @@
   "author": "ehtishamalik <malikehtishamali334@hotmail.com>",
   "license": "MIT",
   "scripts": {
-    "serve": "flask --app app run",
+    "serve": "gunicorn -w 2 -b 127.0.0.1:8000 wsgi:application",
     "dev": "flask --app app run --debug",
+    "host": "ssh -p 443 -o ServerAliveInterval=30 -R0:127.0.0.1:8000 a.pinggy.io",
     "format": "black . --exclude '__pycache__|.venv|migrations'",
     "format:check": "black --check . --exclude '__pycache__|.venv|migrations'",
-    "host": "ssh -p 443 -o ServerAliveInterval=30 -R0:127.0.0.1:5000 a.pinggy.io",
     "pip:install": "pip3 install -r requirements.txt",
     "pip:freeze": "pip3 freeze > requirements.txt",
     "db:init": "flask db init",

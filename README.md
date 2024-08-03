@@ -2,13 +2,13 @@
 
 ## Description
 
-The Travel Tales is a web application that allows users to explore various travel destinations, upload their travel experiences, and interact with content shared by other users. Users can browse destinations added by different contributors. This app provides an interactive platform for users to select their desired destination, view details about the place, and contact administrators for reservation inquiries.
+The Travel Tales is a web application that allows users to explore various travel destinations, upload their travel experiences, and interact with content shared by other users. Users can browse destinations added by different users. This app provides an interactive platform for users to select their desired destination, view details about the place, and contact administrators for reservation inquiries.
 
 ## Technologies Used
 
 The Travel App is built using the following technologies:
 
-- Front-end: HTML, CSS, JS, Jinja template
+- Front-end: HTML, CSS, JS, Jinja2 templating
 - Back-end: Python Flask
 - Database: SQLite Database with SQLALCHEMY
 
@@ -22,8 +22,9 @@ To use the Travel App locally, follow these steps:
 4. Initialize the database by running `yarn db:init`.
 5. Then migrate the initial database schema with `yarn db:migrate`.
 6. Finally apply the migrations using `yarn db:upgrade`.
-7. Start the web app by running `yarn dev` to run in debug mode.
-8. Access the app through your web browser at the specified local address `(localhost:5000)`.
+7. Start the web app by running `yarn dev` to run in debug mode for development.
+8. Serve the web app by running `yarn serve` using gunicorn for production.
+9. Access the app through your web browser at the specified local address `(localhost:5000)`.
 
 After upgrading the database schema, you can add a default admin user by running `yarn db:add`.
 
@@ -34,6 +35,6 @@ Additionally you can run:
 
 ## Contributions
 
-Contributions to the Travel App for GitHub are welcome! If you would like to contribute, please fork the repository, make your changes, and submit a pull request with a detailed description of the enhancements or bug fixes made.
+Contributions to the Travel App for GitHub are welcome! If you would like to contribute, please fork the repository, make your changes, and submit a pull request with description of the enhancements or bug fixes made.
 
 We hope you enjoy exploring new travel destinations conveniently through our Travel App! Happy travels!
